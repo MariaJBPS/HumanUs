@@ -9,7 +9,6 @@ export default function App() {
     // View is for the app UI view
     <View style={styles.container}>
       <Text onPress={handlePress}>CRAZY TIME that is very long to see what will happen but its crazy so I move ike a mad man for no reason</Text>
-      <Image source={require/('./assets/icon.png')} />
       <StatusBar style="auto" />
     </View>
   );
