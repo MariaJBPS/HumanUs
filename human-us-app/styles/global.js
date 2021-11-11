@@ -1,11 +1,11 @@
 // contains all the different styles we will use in different components
-import { Stylesheet } from "react-native";
+import { StyleSheet } from "react-native";
 
 //global styles
 export const globalStyles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    padding: 50,
   },
   titleText: {
     fontFamily: "inter-bold",
