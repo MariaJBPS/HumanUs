@@ -1,16 +1,12 @@
 import React from "react";
 import { StyleSheet, View, Text } from "react-native";
+import { globalStyles } from "../styles/global";
 
 export default function SignUp() {
   return (
-    <View style={styles.container}>
-      <Text>Sign up</Text>
+    <View style={globalStyles.container}>
+      <Text style={globalStyles.titleText}>Sign up</Text>
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    padding: 50,
-  },
-});
