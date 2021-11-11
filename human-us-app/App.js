@@ -1,21 +1,29 @@
-import { StatusBar } from "expo-status-bar";
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React, { useState } from "react";
+import * as Font from "expo-font";
+import Home from "./screens/home";
+import AppLoading from "expo-app-loading";
+
+//import { StyleSheet, Text, View } from "react-native";
+
+// load the fonts
+const getFonts = () =>
+  Font.loadAsync({
+    "inter-bold": require("./assets/fonts/Inter-Bold.ttf"),
+    "inter-regular": require("./assets/fonts/Inter-Regular.ttf"),
+  });
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>hey</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+  const [fontsLoaded, setFontsLoaded] = useState(false);
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
+  if (fontsLoaded) {
+    return <Home />;
+  } else {
+    return (
+      <AppLoading
+        startAsync={getFonts}
+        onFinish={() => setFontsLoaded(true)}
+        onError={(err) => console.log(err)}
+      />
+    );
+  }
+}
