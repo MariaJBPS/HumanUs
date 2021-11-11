@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import * as Font from "expo-font";
 import Home from "./screens/home";
 import AppLoading from "expo-app-loading";
-
-//import { StyleSheet, Text, View } from "react-native";
+import Navigator from "./routes/homeStack";
 
 // load the fonts
 const getFonts = () =>
@@ -16,7 +15,7 @@ export default function App() {
   const [fontsLoaded, setFontsLoaded] = useState(false);
 
   if (fontsLoaded) {
-    return <Home />;
+    return <Navigator />;
   } else {
     return (
       <AppLoading
