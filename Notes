@@ -8,4 +8,4 @@ IMPORTANT: If you come across any errors, one very common reason is your spellin
 - npm run ios # requires an iOS device or macOS for access to an iOS simulator
 - npm run web
 
-2. The global stylesheet is in human-us-app/styles/global.js
+2. The global stylesheet is in human-us-app/styles/global.js 
