@@ -1,4 +1,15 @@
-IMPORTANT: If you come across any errors, one very common reason is your spelling!
+IMPORTANT:
+
+- If you come across any errors, one very common reason is your spelling!
+- if you packages aren't installing, keep trying until they do or try installing an older version!
+
+1. To run your project, navigate to the directory and run one of the following npm commands.
+
+- cd HumanUsApp
+- npm start # you can open iOS, Android, or web from here, or run them directly with the commands below.
+- npm run android
+- npm run ios # requires an iOS device or macOS for access to an iOS simulator
+- npm run web
 
 TODO:
 
@@ -8,13 +19,3 @@ TODO:
   or https://www.geeksforgeeks.org/how-to-deploy-react-app-to-heroku/
 
 - sign up and log in input forms need data validation in order in the method to add the user to the database
-
-1. To run your project, navigate to the directory and run one of the following npm commands.
-
-- cd Human-Us-app
-- npm start # you can open iOS, Android, or web from here, or run them directly with the commands below.
-- npm run android
-- npm run ios # requires an iOS device or macOS for access to an iOS simulator
-- npm run web
-
-2. The global stylesheet is in human-us-app/styles/global.js

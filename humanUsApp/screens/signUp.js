@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import BackIcon from "react-native-vector-icons/Feather";
+import FormFail from "../components/formFail";
+import FormSuccess from "../components/formSuccess";
 import {
   StyleSheet,
   Text,
@@ -12,6 +14,13 @@ import {
 const SignUp = ({ navigation }) => {
   //hold the values of the inputs
   const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPwd, setConfirmPwd] = useState("");
+  //display the error form to false
+  const [displayErrForm, setDisplayErrForm] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
 
   const changeFirstName = (value) => {
     setFirstName(value);
@@ -20,11 +29,6 @@ const SignUp = ({ navigation }) => {
   //need a method to create user using the databases create method
   //yt video minute 6
   //https://www.youtube.com/watch?v=AvgrS-cCcXQ&list=PLYSxLlUA2IkEUZjlxfk-ecd6kD9vJjs2b&index=9
-
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPwd, setConfirmPwd] = useState("");
 
   const pressHandler = () => {
     navigation.navigate("Sign In"); // should match the screen names in App.js
@@ -36,9 +40,16 @@ const SignUp = ({ navigation }) => {
     var passwords_match = password == confirmPwd;
 
     // check if any signup fields are empty
-    if (form_inputs.includes("") || form_inputs.includes(undefined))
-      return console.log(form_inputs);
-    if (!passwords_match) return console.log("passwords do not match");
+    if (form_inputs.includes("") || form_inputs.includes(undefined)) {
+      setErrorMsg("Please do not leave any blanks.");
+      return setDisplayErrForm(true);
+    }
+
+    if (!passwords_match) {
+      setErrorMsg("Passwords do not match.");
+      return setDisplayErrForm(true);
+    }
+
     //if(passwords_match) return createUser();
   };
 
@@ -95,6 +106,10 @@ const SignUp = ({ navigation }) => {
         </TouchableOpacity>
         <Text>Already a member? Log in</Text>
       </View>
+      {/* display the error form */}
+      {displayErrForm == true ? (
+        <FormFail displayErrorForm={setDisplayErrForm} error={errorMsg} />
+      ) : null}
     </ScrollView>
   );
 };
