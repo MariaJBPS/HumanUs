@@ -1,10 +1,13 @@
 IMPORTANT: If you come across any errors, one very common reason is your spelling!
+
 TODO:
 
 - need to install the database onto the react app:
   https://medium.com/@prestonwallace/deploy-your-react-node-app-to-heroku-in-15-minutes-or-less-3-steps-134c766d8d9a
 
   or https://www.geeksforgeeks.org/how-to-deploy-react-app-to-heroku/
+
+- sign up and log in input forms need data validation in order in the method to add the user to the database
 
 1. To run your project, navigate to the directory and run one of the following npm commands.
 

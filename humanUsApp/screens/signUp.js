@@ -29,6 +29,19 @@ const SignUp = ({ navigation }) => {
   const pressHandler = () => {
     navigation.navigate("Sign In"); // should match the screen names in App.js
   };
+
+  //input validation
+  const validateForm = () => {
+    var form_inputs = [firstName, lastName, email, password, confirmPwd];
+    var passwords_match = password == confirmPwd;
+
+    // check if any signup fields are empty
+    if (form_inputs.includes("") || form_inputs.includes(undefined))
+      return console.log(form_inputs);
+    if (!passwords_match) return console.log("passwords do not match");
+    //if(passwords_match) return createUser();
+  };
+
   return (
     <ScrollView style={styles.bottomView}>
       <BackIcon
@@ -77,7 +90,7 @@ const SignUp = ({ navigation }) => {
           secureTextEntry={true}
           style={styles.textInput}
         />
-        <TouchableOpacity style={styles.signUpButton}>
+        <TouchableOpacity onPress={validateForm} style={styles.signUpButton}>
           <Text style={styles.signUpText}>Sign Up</Text>
         </TouchableOpacity>
         <Text>Already a member? Log in</Text>
