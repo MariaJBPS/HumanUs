@@ -17,10 +17,10 @@ const SignIn = ({ navigation }) => {
   return (
     <View style={styles.mainView}>
       <View style={styles.topView}></View>
-      <View style={styles.bottomView}>
+      <ScrollView style={styles.bottomView}>
         <Text style={styles.heading}>
           Welcome {"\n"}
-          back
+          back!
         </Text>
         <View style={styles.formView}>
           <TextInput
@@ -45,7 +45,7 @@ const SignIn = ({ navigation }) => {
             <Text style={styles.signUpText}>Sign Up</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </ScrollView>
     </View>
   );
 };
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     width: "100%",
-    height: "40%",
+    //height: "40%",
     backgroundColor: "#ffb4b4",
   },
   topView: {

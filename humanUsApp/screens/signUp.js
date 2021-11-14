@@ -1,4 +1,5 @@
 import React from "react";
+import BackIcon from "react-native-vector-icons/Feather";
 import {
   StyleSheet,
   Text,
@@ -10,59 +11,64 @@ import {
 
 const SignUp = () => {
   return (
-    <View style={styles.mainView}>
-      <ScrollView style={styles.bottomView}>
-        <View style={styles.topView}></View>
-        <Text style={styles.heading}>Create Account</Text>
-        <View style={styles.formView}>
-          <TextInput
-            placeholder={"First Name "}
-            placeholderTextColor={"grey"}
-            style={styles.textInput}
-          />
-          <TextInput
-            placeholder={"Last Name "}
-            placeholderTextColor={"grey"}
-            style={styles.textInput}
-          />
-          <TextInput
-            placeholder={"Email  "}
-            placeholderTextColor={"grey"}
-            style={styles.textInput}
-          />
-          <TextInput
-            placeholder={"Password "}
-            placeholderTextColor={"grey"}
-            secureTextEntry={true}
-            style={styles.textInput}
-          />
-          <TextInput
-            placeholder={"Confirm Password "}
-            placeholderTextColor={"grey"}
-            secureTextEntry={true}
-            style={styles.textInput}
-          />
-          <TouchableOpacity style={styles.signUpButton}>
-            <Text style={styles.signUpText}>Sign Up</Text>
-          </TouchableOpacity>
-          <Text>Already a member? Log in</Text>
-        </View>
-      </ScrollView>
-    </View>
+    //<View style={styles.mainView}>
+    <ScrollView style={styles.bottomView}>
+      <BackIcon name="chevron-left" size={60} color={"black"} />
+      <Text style={styles.heading}>Create Your {"\n"}Account</Text>
+      <View style={styles.formView}>
+        <TextInput
+          placeholder={"First Name "}
+          placeholderTextColor={"grey"}
+          style={styles.textInput}
+        />
+        <TextInput
+          placeholder={"Last Name "}
+          placeholderTextColor={"grey"}
+          style={styles.textInput}
+        />
+        <TextInput
+          placeholder={"Email  "}
+          placeholderTextColor={"grey"}
+          style={styles.textInput}
+        />
+        <TextInput
+          placeholder={"Password "}
+          placeholderTextColor={"grey"}
+          secureTextEntry={true}
+          style={styles.textInput}
+        />
+        <TextInput
+          placeholder={"Confirm Password "}
+          placeholderTextColor={"grey"}
+          secureTextEntry={true}
+          style={styles.textInput}
+        />
+        <TouchableOpacity style={styles.signUpButton}>
+          <Text style={styles.signUpText}>Sign Up</Text>
+        </TouchableOpacity>
+        <Text>Already a member? Log in</Text>
+      </View>
+    </ScrollView>
+    //</View>
   );
 };
 
 const styles = StyleSheet.create({
-  mainView: {
-    marginTop: 40,
-    flex: 1,
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    width: "100%",
-    height: "40%",
-    backgroundColor: "white",
-  },
+  // mainView: {
+  //   marginTop: 40,
+  //   flex: 1,
+  //   flexDirection: "column",
+  //   justifyContent: "center",
+  //   alignItems: "center",
+  //   width: "100%",
+  //   height: "100%",
+  //   backgroundColor: "green",
+  // },
+  // topView: {
+  //   width: "100%",
+  //   height: "10%",
+  //   backgroundColor: "black",
+  // },
   bottomView: {
     width: "100%",
     height: "90%",
@@ -74,7 +80,7 @@ const styles = StyleSheet.create({
     fontSize: 40,
     fontWeight: "bold",
     marginLeft: 30,
-    marginTop: 60,
+    marginTop: 10,
   },
   formView: {
     width: "100%",
