@@ -9,11 +9,19 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-const SignUp = () => {
+const SignUp = ({ navigation }) => {
+  const pressHandler = () => {
+    navigation.navigate("Sign In"); // should match the screen names in App.js
+  };
   return (
-    //<View style={styles.mainView}>
     <ScrollView style={styles.bottomView}>
-      <BackIcon name="chevron-left" size={60} color={"black"} />
+      <BackIcon
+        onPress={pressHandler}
+        style={styles.backIcon}
+        name="chevron-left"
+        size={60}
+        color={"black"}
+      />
       <Text style={styles.heading}>Create Your {"\n"}Account</Text>
       <View style={styles.formView}>
         <TextInput
@@ -49,29 +57,13 @@ const SignUp = () => {
         <Text>Already a member? Log in</Text>
       </View>
     </ScrollView>
-    //</View>
   );
 };
 
 const styles = StyleSheet.create({
-  // mainView: {
-  //   marginTop: 40,
-  //   flex: 1,
-  //   flexDirection: "column",
-  //   justifyContent: "center",
-  //   alignItems: "center",
-  //   width: "100%",
-  //   height: "100%",
-  //   backgroundColor: "green",
-  // },
-  // topView: {
-  //   width: "100%",
-  //   height: "10%",
-  //   backgroundColor: "black",
-  // },
   bottomView: {
     width: "100%",
-    height: "90%",
+    height: "70%",
     backgroundColor: "white", //backgroundColor: "black"
     borderTopRightRadius: 30,
     borderTopLeftRadius: 30,
@@ -130,6 +122,10 @@ const styles = StyleSheet.create({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+  },
+  backIcon: {
+    marginLeft: 5,
+    marginTop: 60,
   },
 });
 

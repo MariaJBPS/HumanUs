@@ -1,4 +1,5 @@
 import React from "react";
+import Icon from "react-native-vector-icons/FontAwesome";
 import {
   StyleSheet,
   Text,
@@ -44,6 +45,25 @@ const SignIn = ({ navigation }) => {
           <TouchableOpacity style={styles.signUpButton} onPress={pressHandler}>
             <Text style={styles.signUpText}>Sign Up</Text>
           </TouchableOpacity>
+          <View style={styles.socialsView}>
+            {/* social media icons view */}
+            <View style={styles.facebookView}>
+              <Icon
+                //onPress={}
+                name="facebook-square"
+                size={50}
+                color={"black"}
+              />
+            </View>
+            <View style={styles.googleView}>
+              <Icon
+                //onPress={}
+                name="google"
+                size={50}
+                color={"black"}
+              />
+            </View>
+          </View>
         </View>
       </ScrollView>
     </View>
@@ -126,6 +146,28 @@ const styles = StyleSheet.create({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+  },
+  socialsView: {
+    flex: 2,
+    height: 50,
+    flexWrap: "wrap",
+    alignItems: "center",
+    flexDirection: "row",
+    margin: 10,
+  },
+  facebookView: {
+    flex: 1,
+    marginHorizontal: 1,
+    marginVertical: 2,
+    marginLeft: 140,
+    marginRight: 10,
+  },
+  googleView: {
+    flex: 1,
+    marginHorizontal: 1,
+    marginVertical: 2,
+    marginRight: 130,
+    marginLeft: 20,
   },
 });
 
