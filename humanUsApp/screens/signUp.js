@@ -9,6 +9,7 @@ import {
   ScrollView,
   TextInput,
   TouchableOpacity,
+  ActivityIndicator,
 } from "react-native";
 
 const SignUp = ({ navigation }) => {
@@ -21,6 +22,10 @@ const SignUp = ({ navigation }) => {
   //display the error form to false
   const [displayErrForm, setDisplayErrForm] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+  //success message
+  const [successMsg, setSuccess] = useState("");
+  // a loading animation when the user creates an account successfully
+  const [isLoading, setIsLoading] = useState(false);
 
   const changeFirstName = (value) => {
     setFirstName(value);
@@ -30,6 +35,9 @@ const SignUp = ({ navigation }) => {
   //yt video minute 6
   //https://www.youtube.com/watch?v=AvgrS-cCcXQ&list=PLYSxLlUA2IkEUZjlxfk-ecd6kD9vJjs2b&index=9
 
+  // also, catch an error when creating the user with an existing email
+  // the email is already used in another account
+  //https://www.youtube.com/watch?v=mSPP8-YzVtk&list=PLYSxLlUA2IkEUZjlxfk-ecd6kD9vJjs2b&index=7
   const pressHandler = () => {
     navigation.navigate("Sign In"); // should match the screen names in App.js
   };

@@ -13,9 +13,14 @@ IMPORTANT:
 
 TODO:
 
-- need to install the database onto the react app:
+- need to install the heroku database onto the react app:
   https://medium.com/@prestonwallace/deploy-your-react-node-app-to-heroku-in-15-minutes-or-less-3-steps-134c766d8d9a
 
   or https://www.geeksforgeeks.org/how-to-deploy-react-app-to-heroku/
 
-- sign up and log in input forms need data validation in order in the method to add the user to the database
+- sign up and log in input forms need data validation in the method to add the user to the database
+- success pop up after account is created (minute 12:50)
+  https://www.youtube.com/watch?v=mSPP8-YzVtk&list=PLYSxLlUA2IkEUZjlxfk-ecd6kD9vJjs2b&index=7
+
+- Adding bottom tab navigation in React Native
+  https://www.youtube.com/watch?v=-Ys2LpFRprY&list=PLYSxLlUA2IkEUZjlxfk-ecd6kD9vJjs2b&index=6
