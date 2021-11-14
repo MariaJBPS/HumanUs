@@ -112,7 +112,15 @@ const SignUp = ({ navigation }) => {
         <TouchableOpacity onPress={validateForm} style={styles.signUpButton}>
           <Text style={styles.signUpText}>Sign Up</Text>
         </TouchableOpacity>
-        <Text>Already a member? Log in</Text>
+        <View style={{ flex: 1, flexDirection: "row", marginTop: 40 }}>
+          <Text style={{ fontSize: 18 }}>Already a member?</Text>
+          <TouchableOpacity onPress={pressHandler}>
+            <Text style={{ color: "red", fontSize: 18, fontWeight: "bold" }}>
+              {" "}
+              Log in
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
       {/* display the error form */}
       {displayErrForm == true ? (
@@ -180,7 +188,7 @@ const styles = StyleSheet.create({
     height: 52,
     backgroundColor: "black",
     borderRadius: 10,
-    marginTop: 20,
+    marginTop: 30,
     display: "flex",
     justifyContent: "center",
     alignItems: "center",

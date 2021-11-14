@@ -38,13 +38,18 @@ const SignIn = ({ navigation }) => {
           <TouchableOpacity style={styles.signInButton}>
             <Text style={styles.signIn}>Log in</Text>
           </TouchableOpacity>
-
-          <Text>Or log in with facebook or gmail</Text>
-          <Text>Don't have an account?</Text>
-
-          <TouchableOpacity style={styles.signUpButton} onPress={pressHandler}>
-            <Text style={styles.signUpText}>Sign Up</Text>
-          </TouchableOpacity>
+          <View
+            style={{
+              marginVertical: 20,
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <View style={styles.orLine}></View>
+            <Text> Or log in with: </Text>
+            <View style={styles.orLine}></View>
+          </View>
           <View style={styles.socialsView}>
             {/* social media icons view */}
             <View style={styles.facebookView}>
@@ -64,6 +69,10 @@ const SignIn = ({ navigation }) => {
               />
             </View>
           </View>
+          <Text style={{ marginTop: 40 }}>Don't have an account?</Text>
+          <TouchableOpacity style={styles.signUpButton} onPress={pressHandler}>
+            <Text style={styles.signUpText}>Sign Up</Text>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </View>
@@ -168,6 +177,11 @@ const styles = StyleSheet.create({
     marginVertical: 2,
     marginRight: 130,
     marginLeft: 20,
+  },
+  orLine: {
+    height: 1,
+    width: 137,
+    backgroundColor: "#bfbfbf",
   },
 });
 
