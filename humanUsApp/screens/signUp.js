@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import BackIcon from "react-native-vector-icons/Feather";
 import {
   StyleSheet,
@@ -10,6 +10,22 @@ import {
 } from "react-native";
 
 const SignUp = ({ navigation }) => {
+  //hold the values of the inputs
+  const [firstName, setFirstName] = useState("");
+
+  const changeFirstName = (value) => {
+    setFirstName(value);
+  };
+
+  //need a method to create user using the databases create method
+  //yt video minute 6
+  //https://www.youtube.com/watch?v=AvgrS-cCcXQ&list=PLYSxLlUA2IkEUZjlxfk-ecd6kD9vJjs2b&index=9
+
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPwd, setConfirmPwd] = useState("");
+
   const pressHandler = () => {
     navigation.navigate("Sign In"); // should match the screen names in App.js
   };
@@ -25,27 +41,37 @@ const SignUp = ({ navigation }) => {
       <Text style={styles.heading}>Create Your {"\n"}Account</Text>
       <View style={styles.formView}>
         <TextInput
+          value={firstName}
+          onChangeText={changeFirstName}
           placeholder={"First Name "}
           placeholderTextColor={"grey"}
           style={styles.textInput}
         />
         <TextInput
+          value={lastName}
+          onChangeText={(val) => setLastName(val)}
           placeholder={"Last Name "}
           placeholderTextColor={"grey"}
           style={styles.textInput}
         />
         <TextInput
+          value={email}
+          onChangeText={(val) => setEmail(val)}
           placeholder={"Email  "}
           placeholderTextColor={"grey"}
           style={styles.textInput}
         />
         <TextInput
+          value={password}
+          onChangeText={(val) => setPassword(val)}
           placeholder={"Password "}
           placeholderTextColor={"grey"}
           secureTextEntry={true}
           style={styles.textInput}
         />
         <TextInput
+          value={confirmPwd}
+          onChangeText={(val) => setConfirmPwd(val)}
           placeholder={"Confirm Password "}
           placeholderTextColor={"grey"}
           secureTextEntry={true}

@@ -1,4 +1,10 @@
 IMPORTANT: If you come across any errors, one very common reason is your spelling!
+TODO:
+
+- need to install the database onto the react app:
+  https://medium.com/@prestonwallace/deploy-your-react-node-app-to-heroku-in-15-minutes-or-less-3-steps-134c766d8d9a
+
+  or https://www.geeksforgeeks.org/how-to-deploy-react-app-to-heroku/
 
 1. To run your project, navigate to the directory and run one of the following npm commands.
 
@@ -8,4 +14,4 @@ IMPORTANT: If you come across any errors, one very common reason is your spellin
 - npm run ios # requires an iOS device or macOS for access to an iOS simulator
 - npm run web
 
-2. The global stylesheet is in human-us-app/styles/global.js 
+2. The global stylesheet is in human-us-app/styles/global.js
