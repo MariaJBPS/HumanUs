@@ -24,18 +24,25 @@ const SignIn = ({ navigation }) => {
         </Text>
         <View style={styles.formView}>
           <TextInput
-            placeholder={"Email Address *"}
+            placeholder={"Email  "}
             placeholderTextColor={"grey"}
             style={styles.textInput}
           />
           <TextInput
-            placeholder={"Password *"}
+            placeholder={"Password "}
             placeholderTextColor={"grey"}
             secureTextEntry={true}
             style={styles.textInput}
           />
           <TouchableOpacity style={styles.signInButton}>
-            <Text style={styles.signIn}>Sign in</Text>
+            <Text style={styles.signIn}>Log in</Text>
+          </TouchableOpacity>
+
+          <Text>Or log in with facebook or gmail</Text>
+          <Text>Don't have an account?</Text>
+
+          <TouchableOpacity style={styles.signUpButton} onPress={pressHandler}>
+            <Text style={styles.signUpText}>Sign Up</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -86,6 +93,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingLeft: 5,
     marginTop: 20,
+    fontSize: 16,
   },
   signInButton: {
     width: "90%",
@@ -101,6 +109,23 @@ const styles = StyleSheet.create({
   signIn: {
     // 'Sign In' button text
     color: "white",
+    fontWeight: "bold",
+    fontSize: 18,
+  },
+  signUpText: {
+    color: "white",
+    fontWeight: "bold",
+    fontSize: 18,
+  },
+  signUpButton: {
+    width: "90%",
+    height: 52,
+    backgroundColor: "black",
+    borderRadius: 10,
+    marginTop: 20,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 
