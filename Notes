@@ -27,7 +27,7 @@ TODO:
 - Adding bottom tab navigation in React Native
   https://www.youtube.com/watch?v=-Ys2LpFRprY&list=PLYSxLlUA2IkEUZjlxfk-ecd6kD9vJjs2b&index=6
 
-- figure up the workflow (this page goes where etc)
+- figure out the workflow (this page goes where etc) routes
 - find a way to contribute to the same code
-- login locally (keep logged in)
+- login locally (keep logged in), authorisation token
 - show the feed first, stay logged in
