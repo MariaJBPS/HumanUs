@@ -7,6 +7,7 @@ const isAuth = require("../controllers/auth.js");
 
 const router = express.Router();
 
+// defines our three endpoints:
 router.post("/login", login);
 
 router.post("/signup", signup);
