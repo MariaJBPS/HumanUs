@@ -2,7 +2,7 @@ const express = require('express');
 
 const sequelize = require('./utils/database.js');
 
-const router = reuire('./routes/routes.js'); 
+const router = require('./routes/routes.js'); 
 
 const app = express();
 
@@ -22,3 +22,4 @@ app.use(router);
 sequelize.sync(); 
 
 app.listen(5000); // port where the server will be listening for requests
+
