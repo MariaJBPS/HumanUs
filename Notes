@@ -1,5 +1,8 @@
 IMPORTANT:
 
+Node syntax errors how to fix them
+https://stackoverflow.com/questions/45854169/how-can-i-use-an-es6-import-in-node-js/45854500#45854500
+
 - If you come across any errors, one very common reason is your spelling!
 - if you packages aren't installing, keep trying until they do or try installing an older version!
 
