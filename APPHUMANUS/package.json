@@ -2,15 +2,16 @@
   "name": "human-us-app",
   "version": "1.0.0",
   "description": "Human Us mobile app",
-
+  "type":"module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon ./server/app.js"
+    "start": "nodemon -r esm ./server/app.js" 
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "esm": "^3.2.25",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.3.3",

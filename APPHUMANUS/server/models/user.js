@@ -1,7 +1,7 @@
 //define the users table we are going to store
-const Sequelize = require("sequelize");
+import { Sequelize } from "sequelize";
 
-const sequelize = require("../utils/database.js");
+import sequelize from "../utils/database.js";
 
 // foloow the same order of the indexes as they are in the database
 const User = sequelize.define("users", {
@@ -29,5 +29,4 @@ const User = sequelize.define("users", {
   },
 });
 
-//export default User;
-module.exports = { User };
+export default User;

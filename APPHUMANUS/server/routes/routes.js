@@ -1,9 +1,6 @@
 // defines our API endpoints using express
-const express = require("express");
-
-const signup = require("../controllers/auth.js");
-const login = require("../controllers/auth.js");
-const isAuth = require("../controllers/auth.js");
+import express from "express";
+import { signup, login, isAuth } from "../controllers/auth.js";
 
 const router = express.Router();
 
@@ -23,5 +20,4 @@ router.use("/", (req, res, next) => {
   res.status(404).json({ error: "page not found" });
 });
 
-//export default router;
-module.exports = { router };
+export default router;
