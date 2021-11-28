@@ -11,15 +11,14 @@ import {
 
 const API_URL =
   Platform.OS === "ios" ? "http://localhost:5000" : "http://10.0.2.2:5000";
+//   Platform.OS === "ios" ? "https://localhost:5000" : "https://10.0.2.2:5000";
 
 const AuthScreen = () => {
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
 
-
-//   const [name, setName] = useState("");
-
+  //   const [name, setName] = useState("");
 
   const [password, setPassword] = useState("");
 
@@ -99,56 +98,50 @@ const AuthScreen = () => {
     //   source={require("../public/images/gradient-back.jpeg")}
     //   style={styles.image}
     // >
-      <View style={styles.card}>
-        <Text style={styles.heading}>{isLogin ? "Login" : "Signup"}</Text>
-        <View style={styles.form}>
-          <View style={styles.inputs}>
+    <View style={styles.card}>
+      <Text style={styles.heading}>{isLogin ? "Login" : "Signup"}</Text>
+      <View style={styles.form}>
+        <View style={styles.inputs}>
           {!isLogin && (
-              <TextInput
-                style={styles.input}
-                placeholder="First Name"
-                onChangeText={setFirstName}
-              ></TextInput>
-              
-            )}
-            {!isLogin && (
-              <TextInput
-                style={styles.input}
-                placeholder="Last Name"
-                onChangeText={setLastName}
-              ></TextInput> 
-            )}
             <TextInput
               style={styles.input}
-              placeholder="Email"
-              autoCapitalize="none"
-              onChangeText={setEmail}
+              placeholder="First Name"
+              onChangeText={setFirstName}
             ></TextInput>
+          )}
+          {!isLogin && (
             <TextInput
-              secureTextEntry={true}
               style={styles.input}
-              placeholder="Password"
-              onChangeText={setPassword}
+              placeholder="Last Name"
+              onChangeText={setLastName}
             ></TextInput>
-            <Text
-              style={[styles.message, { color: isError ? "red" : "green" }]}
-            >
-              {message ? getMessage() : null}
+          )}
+          <TextInput
+            style={styles.input}
+            placeholder="Email"
+            autoCapitalize="none"
+            onChangeText={setEmail}
+          ></TextInput>
+          <TextInput
+            secureTextEntry={true}
+            style={styles.input}
+            placeholder="Password"
+            onChangeText={setPassword}
+          ></TextInput>
+          <Text style={[styles.message, { color: isError ? "red" : "green" }]}>
+            {message ? getMessage() : null}
+          </Text>
+          <TouchableOpacity style={styles.button} onPress={onSubmitHandler}>
+            <Text style={styles.buttonText}>Done</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.buttonAlt} onPress={onChangeHandler}>
+            <Text style={styles.buttonAltText}>
+              {isLogin ? "Sign Up" : "Log In"}
             </Text>
-            <TouchableOpacity style={styles.button} onPress={onSubmitHandler}>
-              <Text style={styles.buttonText}>Done</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.buttonAlt}
-              onPress={onChangeHandler}
-            >
-              <Text style={styles.buttonAltText}>
-                {isLogin ? "Sign Up" : "Log In"}
-              </Text>
-            </TouchableOpacity>
-          </View>
+          </TouchableOpacity>
         </View>
       </View>
+    </View>
   );
 };
 
