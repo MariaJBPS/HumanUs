@@ -5,6 +5,10 @@ import jwt from "jsonwebtoken";
 
 import User from "../models/user.js";
 
+//signup registers users in the database.
+//First, it checks if the email provided has already been registered.
+//Then, if the email and password have been received, it hashes the password
+//and stores the user in the database.
 const signup = (req, res, next) => {
   // checks if email already exists
   User.findOne({
@@ -51,6 +55,9 @@ const signup = (req, res, next) => {
     });
 };
 
+//login handles login requests. It starts by checking if the email corresponds to a
+//database user. If that’s the case, it hashes the password and compares it to the
+//user password in the database. If they match, it responds with a temporary secret token.
 const login = (req, res, next) => {
   // checks if email exists
   User.findOne({
@@ -91,6 +98,10 @@ const login = (req, res, next) => {
     });
 };
 
+//isAuth asks for the secret token and, if it is provided, proceeds to verify it.
+//If everything goes well, it will finally respond with the private resource.
+//In this case, that resource will be just a message containing “here is your resource”.
+//This is enough for our proof of concept.
 const isAuth = (req, res, next) => {
   const authHeader = req.get("Authorization");
   if (!authHeader) {
