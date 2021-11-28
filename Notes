@@ -1,5 +1,6 @@
 IMPORTANT:
 
+- network connection is not happening, server is currently listening on port 5000
 - AuthScreen2 is trying to display style, change back to AuthScreen if you just cant..
 - Node syntax errors how to fix them
   https://stackoverflow.com/questions/45854169/how-can-i-use-an-es6-import-in-node-js/45854500#45854500

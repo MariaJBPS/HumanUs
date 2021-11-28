@@ -13,7 +13,7 @@ import {
 const API_URL =
   Platform.OS === "ios" ? "http://localhost:5000" : "http://10.0.2.2:5000";
 //   Platform.OS === "ios" ? "https://localhost:5000" : "https://10.0.2.2:5000";
-
+//my IP address   129.12.237.242
 const AuthScreen2 = () => {
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
