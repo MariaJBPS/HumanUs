@@ -14,7 +14,7 @@ const API_URL =
   Platform.OS === "ios" ? "http://localhost:5000" : "http://10.0.2.2:5000";
 //   Platform.OS === "ios" ? "https://localhost:5000" : "https://10.0.2.2:5000";
 
-const AuthScreen = () => {
+const AuthScreen2 = () => {
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -135,6 +135,43 @@ const AuthScreen = () => {
           <TouchableOpacity style={styles.button} onPress={onSubmitHandler}>
             <Text style={styles.buttonText}>Done</Text>
           </TouchableOpacity>
+
+          {!isLogin && (
+            <View
+              style={{
+                marginVertical: 20,
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <View style={styles.orLine}></View>
+              <Text> Or log in with: </Text>
+              <View style={styles.orLine}></View>
+            </View>
+          )}
+          {/* icons not showing */}
+          {!isLogin && (
+            <View style={styles.socialsView}>
+              <View style={styles.facebookView}>
+                <Icon
+                  //onPress={}
+                  name="facebook-square"
+                  size={50}
+                  color={"black"}
+                />
+              </View>
+              <View style={styles.googleView}>
+                <Icon
+                  //onPress={}
+                  name="google"
+                  size={50}
+                  color={"black"}
+                />
+              </View>
+            </View>
+          )}
+
           <TouchableOpacity style={styles.buttonAlt} onPress={onChangeHandler}>
             <Text style={styles.buttonAltText}>
               {isLogin ? "Sign Up" : "Log In"}
@@ -147,19 +184,19 @@ const AuthScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  image: {
-    flex: 1,
-    width: "100%",
-    alignItems: "center",
-  },
+  //   image: {
+  //     flex: 1,
+  //     width: "100%",
+  //     alignItems: "center",
+  //   },
   card: {
     flex: 1,
     backgroundColor: "rgba(255, 255, 255, 0.4)",
     width: "80%",
-    marginTop: "40%",
+    marginTop: "10%",
     borderRadius: 20,
     maxHeight: 380,
-    paddingBottom: "30%",
+    paddingBottom: "10%",
   },
   heading: {
     fontSize: 30,
@@ -222,6 +259,33 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginVertical: "5%",
   },
+  socialsView: {
+    flex: 2,
+    height: 50,
+    flexWrap: "wrap",
+    alignItems: "center",
+    flexDirection: "row",
+    margin: 10,
+  },
+  facebookView: {
+    flex: 1,
+    marginHorizontal: 1,
+    marginVertical: 2,
+    marginLeft: 140,
+    marginRight: 10,
+  },
+  googleView: {
+    flex: 1,
+    marginHorizontal: 1,
+    marginVertical: 2,
+    marginRight: 130,
+    marginLeft: 20,
+  },
+  orLine: {
+    height: 1,
+    width: 137,
+    backgroundColor: "#bfbfbf",
+  },
 });
 
-export default AuthScreen;
+export default AuthScreen2;

@@ -8,7 +8,7 @@ https://stackoverflow.com/questions/45854169/how-can-i-use-an-es6-import-in-node
 
 1. To run your project, navigate to the directory and run one of the following npm commands.
 
-- cd HumanUsApp
+- cd appHumanUs
 - npm start # you can open iOS, Android, or web from here, or run them directly with the commands below.
 - npm run android
 - npm run ios # requires an iOS device or macOS for access to an iOS simulator
@@ -34,3 +34,4 @@ TODO:
 - find a way to contribute to the same code
 - login locally (keep logged in), authorisation token
 - show the feed first, stay logged in
+- add sign in with facebook or google icons
