@@ -59,6 +59,7 @@ const signup = (req, res, next) => {
 //database user. If that’s the case, it hashes the password and compares it to the
 //user password in the database. If they match, it responds with a temporary secret token.
 const login = (req, res, next) => {
+  console.log("starting login");
   // checks if email exists
   User.findOne({
     where: {

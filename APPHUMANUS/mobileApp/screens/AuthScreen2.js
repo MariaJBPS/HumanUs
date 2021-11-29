@@ -10,8 +10,7 @@ import {
   Platform,
 } from "react-native";
 
-const API_URL =
-  Platform.OS === "ios" ? "http://localhost:5000" : "http://10.0.2.2:5000";
+const API_URL = "http://localhost:5000";
 //   Platform.OS === "ios" ? "https://localhost:5000" : "https://10.0.2.2:5000";
 //my IP address   129.12.237.242
 const AuthScreen2 = () => {
@@ -32,7 +31,7 @@ const AuthScreen2 = () => {
     setMessage("");
   };
 
-  const onLoggedIn = (token) => {
+  const onLoggedIn = (token) => { console.log("trying login" + `${API_URL}/private`)
     fetch(`${API_URL}/private`, {
       method: "GET",
       headers: {
@@ -61,7 +60,7 @@ const AuthScreen2 = () => {
       lastName,
       email,
       password,
-    };
+    }; console.log("on submit" + `${API_URL}/${isLogin ? "login" : "signup"}` )
     fetch(`${API_URL}/${isLogin ? "login" : "signup"}`, {
       method: "POST",
       headers: {
