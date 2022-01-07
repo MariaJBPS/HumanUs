@@ -63,6 +63,7 @@ const AuthScreen2 = () => {
     }; console.log("on submit" + `${API_URL}/${isLogin ? "login" : "signup"}` )
     fetch(`${API_URL}/${isLogin ? "login" : "signup"}`, {
       method: "POST",
+      mode: "no-cors",
       headers: {
         "Content-Type": "application/json",
       },
@@ -135,7 +136,7 @@ const AuthScreen2 = () => {
             <Text style={styles.buttonText}>Done</Text>
           </TouchableOpacity>
 
-          {!isLogin && (
+          {/* {!isLogin && (
             <View
               style={{
                 marginVertical: 20,
@@ -148,9 +149,9 @@ const AuthScreen2 = () => {
               <Text> Or log in with: </Text>
               <View style={styles.orLine}></View>
             </View>
-          )}
+          )} */}
           {/* icons not showing */}
-          {!isLogin && (
+          {/* {!isLogin && (
             <View style={styles.socialsView}>
               <View style={styles.facebookView}>
                 <Icon
@@ -169,7 +170,7 @@ const AuthScreen2 = () => {
                 />
               </View>
             </View>
-          )}
+          )} */}
 
           <TouchableOpacity style={styles.buttonAlt} onPress={onChangeHandler}>
             <Text style={styles.buttonAltText}>

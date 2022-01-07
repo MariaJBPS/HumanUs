@@ -9,8 +9,10 @@ import User from "../models/user.js";
 //First, it checks if the email provided has already been registered.
 //Then, if the email and password have been received, it hashes the password
 //and stores the user in the database.
+
 const signup = (req, res, next) => {
   // checks if email already exists
+  console.log("starting signup" + JSON.stringify(req.body));
   User.findOne({
     where: {
       email: req.body.email,
@@ -18,40 +20,48 @@ const signup = (req, res, next) => {
   })
     .then((dbUser) => {
       if (dbUser) {
-        return res.status(409).json({ message: "email already exists" });
+        res.status(409).json({ message: "email already exists" });
+        next();
       } else if (req.body.email && req.body.password) {
+        console.log("signup with email and password");
         // password hash
         bcrypt.hash(req.body.password, 12, (err, passwordHash) => {
           if (err) {
-            return res
-              .status(500)
-              .json({ message: "couldnt hash the password" });
+            res.status(500).json({ message: "couldnt hash the password" });
+            next();
           } else if (passwordHash) {
-            return User.create({
+            console.log("creating user");
+            User.create({
               firstName: req.body.firstName,
               lastName: req.body.lastName,
               email: req.body.email,
               password: passwordHash,
             })
               .then(() => {
+                console.log("user created");
                 res.status(200).json({ message: "user created" });
+                next();
               })
               .catch((err) => {
                 console.log(err);
                 res
                   .status(502)
                   .json({ message: "error while creating the user" });
+                next();
               });
           }
         });
       } else if (!req.body.password) {
-        return res.status(400).json({ message: "password not provided" });
+        res.status(400).json({ message: "password not provided" });
+        next();
       } else if (!req.body.email) {
-        return res.status(400).json({ message: "email not provided" });
+        res.status(400).json({ message: "email not provided" });
+        next();
       }
     })
     .catch((err) => {
       console.log("error", err);
+      next();
     });
 };
 
