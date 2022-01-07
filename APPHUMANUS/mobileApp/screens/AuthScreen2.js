@@ -31,7 +31,8 @@ const AuthScreen2 = () => {
     setMessage("");
   };
 
-  const onLoggedIn = (token) => { console.log("trying login" + `${API_URL}/private`)
+  const onLoggedIn = (token) => {
+    console.log("trying login" + `${API_URL}/private`);
     fetch(`${API_URL}/private`, {
       method: "GET",
       headers: {
@@ -60,10 +61,11 @@ const AuthScreen2 = () => {
       lastName,
       email,
       password,
-    }; console.log("on submit" + `${API_URL}/${isLogin ? "login" : "signup"}` )
+    };
+    console.log("on submit" + `${API_URL}/${isLogin ? "login" : "signup"}`);
     fetch(`${API_URL}/${isLogin ? "login" : "signup"}`, {
       method: "POST",
-      mode: "no-cors",
+      mode: "cors",
       headers: {
         "Content-Type": "application/json",
       },
