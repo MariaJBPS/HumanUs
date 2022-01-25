@@ -1,6 +1,6 @@
 import { Sequelize } from "sequelize"; // create the database connection
 
-const sequelize = new Sequelize("loginDB", "root", "jamaicinha12", {
+const sequelize = new Sequelize("loginDB", "root", "root", {
   dialect: "mysql",
   host: "localhost",
   port: "3306",
