@@ -1,11 +1,8 @@
 import { Sequelize } from "sequelize"; // create the database connection
 
-const sequelize = new Sequelize("loginDB", "root", "root", {
-  //dbname=mb2007", "mb2007", "weitab6"
+const sequelize = new Sequelize("mb2007", "mb2007", "weitab6", {
   dialect: "mysql",
-  host: "localhost", //dragon.kent.ac.uk
-  port: "3306", //remove this?
-  logging: true, // remove this?
+  host: "dragon.kent.ac.uk",
 });
 
 sequelize
