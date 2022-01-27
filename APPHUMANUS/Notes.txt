@@ -1,4 +1,5 @@
 b4Main branch - asks permission to maria24 before submitting changes 
 (from b4Main)
 1 - push to maria24
-2 - pull from maria24
+2 - maria24 approves, actions a pull request and merges from b4Main
+3 - b4Main branch can now be deleted
