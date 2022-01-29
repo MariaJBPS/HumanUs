@@ -1,3 +1,4 @@
+//AuthScreen2 combines both sign up and login into one page
 import React, { useState } from "react";
 import Icon from "react-native-vector-icons/FontAwesome";
 import {
