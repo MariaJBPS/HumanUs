@@ -4,5 +4,17 @@
 // export { AuthScreen };
 
 import AuthScreen2 from "./AuthScreen2";
+import Home from "./home";
 
-export { AuthScreen2 };
+// class index extends Component {
+//     render(
+//       return(
+//          <View style={styles.container}>
+//           <AuthScreen2 />
+//           <StatusBar style="auto" />
+//         </View> 
+//       )
+//     )
+//   }
+
+export { AuthScreen2, Home };

@@ -1,16 +1,22 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import { AuthScreen2 } from "./screens";
-import { AuthScreen } from "./screens";
+//pages
+import { AuthScreen2, Home } from "./screens";
 
+//wrap all your pages in this router
 export default function App() {
   return (
-    <View style={styles.container}>
-      <AuthScreen2 />
-      <StatusBar style="auto" />
-    </View>
+    <Router>
+      <Routes>
+        {/* keep adding routes to new pages */}
+        {/* <Route exact path="/" component={home} /> */}
+        <Route path="/" element={<Home />} />
+        <Route path="/authscreen2" element={<AuthScreen2 />} />
+      </Routes>
+    </Router>
   );
 }
 
