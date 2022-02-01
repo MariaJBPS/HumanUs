@@ -11,9 +11,11 @@ import {
   Platform,
 } from "react-native";
 
-const API_URL = "http://localhost:5000";
+
+
+const API_URL = "http://localhost:5000"; // local?
 //   Platform.OS === "ios" ? "https://localhost:5000" : "https://10.0.2.2:5000";
-//my IP address   129.12.237.242
+
 const AuthScreen2 = () => {
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
