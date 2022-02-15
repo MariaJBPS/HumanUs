@@ -141,42 +141,6 @@ const AuthScreen2 = () => {
             <Text style={styles.buttonText}>Done</Text>
           </TouchableOpacity>
 
-          {/* {!isLogin && (
-            <View
-              style={{
-                marginVertical: 20,
-                flexDirection: "row",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <View style={styles.orLine}></View>
-              <Text> Or log in with: </Text>
-              <View style={styles.orLine}></View>
-            </View>
-          )} */}
-          {/* icons not showing */}
-          {/* {!isLogin && (
-            <View style={styles.socialsView}>
-              <View style={styles.facebookView}>
-                <Icon
-                  //onPress={}
-                  name="facebook-square"
-                  size={50}
-                  color={"black"}
-                />
-              </View>
-              <View style={styles.googleView}>
-                <Icon
-                  //onPress={}
-                  name="google"
-                  size={50}
-                  color={"black"}
-                />
-              </View>
-            </View>
-          )} */}
-
           <TouchableOpacity style={styles.buttonAlt} onPress={onChangeHandler}>
             <Text style={styles.buttonAltText}>
               {isLogin ? "Sign Up" : "Log In"}
@@ -189,11 +153,7 @@ const AuthScreen2 = () => {
 };
 
 const styles = StyleSheet.create({
-  //   image: {
-  //     flex: 1,
-  //     width: "100%",
-  //     alignItems: "center",
-  //   },
+
   card: {
     flex: 1,
     backgroundColor: "rgba(255, 255, 255, 0.4)",
