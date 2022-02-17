@@ -35,6 +35,10 @@ const AuthScreen2 = () => {
   };
 
   const onLoggedIn = (token) => {
+    if (isLogin) {//if user is logged in
+      global.email = email; //save their email globally
+    }
+
     console.log("trying login" + `${API_URL}/private`);
     fetch(`${API_URL}/private`, {
       method: "GET",
@@ -100,10 +104,6 @@ const AuthScreen2 = () => {
   };
 
   return (
-    // <ImageBackground
-    //   source={require("../public/images/gradient-back.jpeg")}
-    //   style={styles.image}
-    // >
     <View style={styles.card}>
       <Text style={styles.heading}>{isLogin ? "Login" : "Signup"}</Text>
       <View style={styles.form}>
