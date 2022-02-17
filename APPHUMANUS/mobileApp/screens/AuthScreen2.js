@@ -1,27 +1,22 @@
 //AuthScreen2 combines both sign up and login into one page
 import React, { useState } from "react";
-import Icon from "react-native-vector-icons/FontAwesome";
 import {
-  ImageBackground,
   View,
   Text,
   StyleSheet,
   TouchableOpacity,
   TextInput,
-  Platform,
 } from "react-native";
 
 
 
 const API_URL = "http://localhost:5000"; // local?
-//   Platform.OS === "ios" ? "https://localhost:5000" : "https://10.0.2.2:5000";
+
 
 const AuthScreen2 = () => {
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-
-  //   const [name, setName] = useState("");
 
   const [password, setPassword] = useState("");
 
@@ -29,12 +24,19 @@ const AuthScreen2 = () => {
   const [message, setMessage] = useState("");
   const [isLogin, setIsLogin] = useState(true);
 
+  //change login boolean value
+  // depending whether you're clicking
+  // on a sign up or log in button 
   const onChangeHandler = () => {
     setIsLogin(!isLogin);
     setMessage("");
   };
 
   const onLoggedIn = (token) => {
+    if (isLogin) {//if user is logged in
+      global.email = email; //save their email globally
+    }
+
     console.log("trying login" + `${API_URL}/private`);
     fetch(`${API_URL}/private`, {
       method: "GET",
@@ -58,6 +60,7 @@ const AuthScreen2 = () => {
       });
   };
 
+  // deals with what happens after clicking on a sign up/log in button
   const onSubmitHandler = () => {
     const payload = {
       firstName,
@@ -77,10 +80,10 @@ const AuthScreen2 = () => {
       .then(async (res) => {
         try {
           const jsonRes = await res.json();
-          if (res.status !== 200) {
+          if (res.status !== 200) { // errors during sign up/login
             setIsError(true);
             setMessage(jsonRes.message);
-          } else {
+          } else {// if status is 200, then user is logged/signed up in succesfully
             onLoggedIn(jsonRes.token);
             setIsError(false);
             setMessage(jsonRes.message);
@@ -94,16 +97,13 @@ const AuthScreen2 = () => {
       });
   };
 
+  //display an eror or success message
   const getMessage = () => {
     const status = isError ? `Error: ` : `Success: `;
     return status + message;
   };
 
   return (
-    // <ImageBackground
-    //   source={require("../public/images/gradient-back.jpeg")}
-    //   style={styles.image}
-    // >
     <View style={styles.card}>
       <Text style={styles.heading}>{isLogin ? "Login" : "Signup"}</Text>
       <View style={styles.form}>
@@ -143,6 +143,7 @@ const AuthScreen2 = () => {
 
           <TouchableOpacity style={styles.buttonAlt} onPress={onChangeHandler}>
             <Text style={styles.buttonAltText}>
+              {/* if on login page, button text changes to Sign up, else.. */}
               {isLogin ? "Sign Up" : "Log In"}
             </Text>
           </TouchableOpacity>
@@ -223,33 +224,6 @@ const styles = StyleSheet.create({
   message: {
     fontSize: 16,
     marginVertical: "5%",
-  },
-  socialsView: {
-    flex: 2,
-    height: 50,
-    flexWrap: "wrap",
-    alignItems: "center",
-    flexDirection: "row",
-    margin: 10,
-  },
-  facebookView: {
-    flex: 1,
-    marginHorizontal: 1,
-    marginVertical: 2,
-    marginLeft: 140,
-    marginRight: 10,
-  },
-  googleView: {
-    flex: 1,
-    marginHorizontal: 1,
-    marginVertical: 2,
-    marginRight: 130,
-    marginLeft: 20,
-  },
-  orLine: {
-    height: 1,
-    width: 137,
-    backgroundColor: "#bfbfbf",
   },
 });
 
