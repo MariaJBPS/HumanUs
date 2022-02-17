@@ -5,10 +5,10 @@ import jwt from "jsonwebtoken";
 
 import User from "../models/user.js";
 
-//signup registers users in the database.
-//First, it checks if the email provided has already been registered.
-//Then, if the email and password have been received, it hashes the password
-//and stores the user in the database.
+/* signup registers users in the database.
+First, it checks if the email provided has already been registered.
+Then, if the email and password have been received, it hashes the password
+and stores the user in the database. */
 
 const signup = (req, res, next) => {
   // checks if email already exists
@@ -82,7 +82,7 @@ const login = (req, res, next) => {
       } else {
         // password hash
         bcrypt.compare(
-          req.body.password,
+          req.body.password, // entered password
           dbUser.password,
           (err, compareRes) => {
             if (err) {
@@ -130,7 +130,7 @@ const isAuth = (req, res, next) => {
   if (!decodedToken) {
     res.status(401).json({ message: "unauthorized" });
   } else {
-    res.status(200).json({ message: "here is your resource" });
+    res.status(200).json({ message: "here is your resource" }); //send the user to Feed
   }
 };
 
