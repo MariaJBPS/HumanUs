@@ -4,8 +4,10 @@ import { StyleSheet, Text, View } from "react-native";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 //pages
-import { AuthScreen2, Home } from "./screens";
+import { AuthScreen2 } from "./screens";
+import { Home } from "./screens";
 
+import {ProfilePage} from "./screens";
 //wrap all your pages in this router
 export default function App() {
   return (
@@ -15,6 +17,7 @@ export default function App() {
         {/* <Route exact path="/" component={home} /> */}
         <Route path="/" element={<Home />} />
         <Route path="/authscreen2" element={<AuthScreen2 />} />
+        <Route path="/profile" element={<ProfilePage />}/>
       </Routes>
     </Router>
   );
