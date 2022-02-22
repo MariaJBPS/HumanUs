@@ -8,19 +8,20 @@ return(
 <ScrollView style={styles.mainFeed}>
 <Text style={styles.Header}>All Jobs</Text>
 <View style={styles.Contain}>
-{/* <Image style={styles.Image} source={require('./Images/aTest.jpeg')}/> */}
+    {/* images not showing */}
+<Image style={styles.Image} source={require('./Images/aTest.jpeg')}/>
 <Button title='Animals'/>
 </View>
 <View style={styles.Contain}>
-{/* <Image style={styles.Image} source={require('./Images/download.jpeg')}/> */}
+<Image style={styles.Image} source={require('./Images/download.jpeg')}/>
 <Button title='Childcare'/>
 </View>
 <View style={styles.Contain}>
-{/* <Image style={styles.Image} source={require('./Images/Elder.jpeg')}/> */}
+<Image style={styles.Image} source={require('./Images/Elder.jpeg')}/>
 <Button title='Elderly'/>
 </View>
 <View style={styles.Contain}>
-{/* <Image style={styles.Image} source={require('./Images/Remote1.jpg')}/> */}
+<Image style={styles.Image} source={require('./Images/Remote1.jpg')}/>
 <Button title='Remote'/>
 </View>
 
