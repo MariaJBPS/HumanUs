@@ -112,7 +112,7 @@ const login = (req, res, next) => {
 //isAuth asks for the secret token and, if it is provided, proceeds to verify it.
 //If everything goes well, it will finally respond with the private resource.
 //In this case, that resource will be just a message containing “here is your resource”.
-//This is enough for our proof of concept.
+
 const isAuth = (req, res, next) => {
   const authHeader = req.get("Authorization");
   if (!authHeader) {
@@ -131,6 +131,7 @@ const isAuth = (req, res, next) => {
     res.status(401).json({ message: "unauthorized" });
   } else {
     res.status(200).json({ message: "here is your resource" }); //send the user to Feed
+    //something here to allow screen redirection?
   }
 };
 

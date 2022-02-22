@@ -8,10 +8,7 @@ import {
   TextInput,
 } from "react-native";
 
-
-
 const API_URL = "http://localhost:5000"; // local?
-
 
 const AuthScreen2 = () => {
   const [email, setEmail] = useState("");
@@ -26,14 +23,15 @@ const AuthScreen2 = () => {
 
   //change login boolean value
   // depending whether you're clicking
-  // on a sign up or log in button 
+  // on a sign up or log in button
   const onChangeHandler = () => {
     setIsLogin(!isLogin);
     setMessage("");
   };
 
   const onLoggedIn = (token) => {
-    if (isLogin) {//if user is logged in
+    if (isLogin) {
+      //if user is logged in
       global.email = email; //save their email globally
     }
 
@@ -80,14 +78,31 @@ const AuthScreen2 = () => {
       .then(async (res) => {
         try {
           const jsonRes = await res.json();
-          if (res.status !== 200) { // errors during sign up/login
+          if (res.status !== 200) {
+            // errors during sign up/login
             setIsError(true);
             setMessage(jsonRes.message);
-          } else {// if status is 200, then user is logged/signed up in succesfully
+          } // redirect the user to the home page
+          // else if (jsonRes.message === "here is your resource") {
+          //   onLoggedIn(jsonRes.token);
+          //   location.href = "/"; // path to home page
+          //   console.log('logged in');
+          // }
+          else {
+            // if status is 200, then user is logged/signed up in succesfully
             onLoggedIn(jsonRes.token);
             setIsError(false);
             setMessage(jsonRes.message);
           }
+
+          // redirect the user to the home page
+          // if (jsonRes.message === "user logged in") {
+          //   console.log("logged in");
+          //   onLoggedIn(jsonRes.token);
+          //   setIsError(false);
+          //   location.href = "/"; // path to home page
+          //   this.props.history.push("/");
+          // }
         } catch (err) {
           console.log(err);
         }
@@ -143,7 +158,7 @@ const AuthScreen2 = () => {
 
           <TouchableOpacity style={styles.buttonAlt} onPress={onChangeHandler}>
             <Text style={styles.buttonAltText}>
-              {/* if on login page, button text changes to Sign up, else.. */}
+             { /* if on login page, button text changes to Sign up, else.. */}
               {isLogin ? "Sign Up" : "Log In"}
             </Text>
           </TouchableOpacity>
@@ -154,7 +169,6 @@ const AuthScreen2 = () => {
 };
 
 const styles = StyleSheet.create({
-
   card: {
     flex: 1,
     backgroundColor: "rgba(255, 255, 255, 0.4)",
