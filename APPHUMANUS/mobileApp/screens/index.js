@@ -1,5 +1,5 @@
 import AuthScreen2 from "./AuthScreen2";
-import Home from "./home";
+import Feed from "./Feed";
 import ProfilePage from "./profilePage";
 
-export { AuthScreen2, Home, ProfilePage };
+export { AuthScreen2, Feed, ProfilePage };
