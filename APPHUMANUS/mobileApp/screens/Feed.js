@@ -1,5 +1,7 @@
 import React from "react";
 import {Text, View, Button, StyleSheet, Image, ScrollView} from "react-native";
+//test
+import {Link} from "react-router-dom";
 
 
 const Feed = () =>{
@@ -10,7 +12,8 @@ return(
 <View style={styles.Contain}>
     {/* images not showing */}
 <Image style={styles.Image} source={require('./Images/aTest.jpeg')}/>
-<Button title='Animals'/>
+{/* test works */}
+<Button title={<Link to="/animals">Animals</Link>}/> 
 </View>
 <View style={styles.Contain}>
 <Image style={styles.Image} source={require('./Images/download.jpeg')}/>
