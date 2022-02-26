@@ -98,8 +98,8 @@ const AuthScreen2 = () => {
           if (jsonRes.message === "user logged in") {
              console.log("logged in");
           // <Navigate to ="/" />;
-          // }
-         res.redirect("/");
+          // 
+          //res.redirect("/"); // error: not a function
         }
         } catch (err) {
           console.log(err);

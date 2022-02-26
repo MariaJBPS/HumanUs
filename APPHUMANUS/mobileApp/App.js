@@ -17,10 +17,12 @@ export default function App() {
     <Router>
       <Routes>
         {/* keep adding routes to new pages */}
-        <Route path="/" element={<Feed />} />
+        
         <Route path="/authscreen2" element={<AuthScreen2 />} />
-        {/* this doesnt work so well  */}
+        {/* this doesnt work so well, keeps showing feed because user is logged
+        can show other pages  */}
         {/* <Route path="/authscreen2" element={ {isLogin} ? <Navigate to="/"/> : <AuthScreen2/>} /> */}
+        <Route path="/" element={<Feed />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/animals" element={<Animals />} />
       </Routes>

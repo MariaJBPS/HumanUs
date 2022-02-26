@@ -132,6 +132,7 @@ const isAuth = (req, res, next) => {
   } else {
     res.status(200).json({ message: "here is your resource" }); //send the user to Feed
     //something here to allow screen redirection?
+    //res.redirect("/");
   }
 };
 
