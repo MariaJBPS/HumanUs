@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   TextInput,
 } from "react-native";
+import {Navigate} from "react-router-dom";
 
 const API_URL = "http://localhost:5000"; // local?
 
@@ -20,6 +21,9 @@ const AuthScreen2 = () => {
   const [isError, setIsError] = useState(false);
   const [message, setMessage] = useState("");
   const [isLogin, setIsLogin] = useState(true);
+
+  // declare a global variable
+  window.isLogin = isLogin; 
 
   //change login boolean value
   // depending whether you're clicking
@@ -82,12 +86,7 @@ const AuthScreen2 = () => {
             // errors during sign up/login
             setIsError(true);
             setMessage(jsonRes.message);
-          } // redirect the user to the home page
-          // else if (jsonRes.message === "here is your resource") {
-          //   onLoggedIn(jsonRes.token);
-          //   location.href = "/"; // path to home page
-          //   console.log('logged in');
-          // }
+          } 
           else {
             // if status is 200, then user is logged/signed up in succesfully
             onLoggedIn(jsonRes.token);
@@ -96,13 +95,12 @@ const AuthScreen2 = () => {
           }
 
           // redirect the user to the home page
-          // if (jsonRes.message === "user logged in") {
-          //   console.log("logged in");
-          //   onLoggedIn(jsonRes.token);
-          //   setIsError(false);
-          //   location.href = "/"; // path to home page
-          //   this.props.history.push("/");
+          if (jsonRes.message === "user logged in") {
+             console.log("logged in");
+          // <Navigate to ="/" />;
           // }
+         res.redirect("/");
+        }
         } catch (err) {
           console.log(err);
         }
