@@ -72,7 +72,14 @@ const AuthScreen2 = () => {
     };
     console.log("on submit" + `${API_URL}/${isLogin ? "login" : "signup"}`);
     // redirect the user to the feed page
-    window.location.href ="/";
+    //  REDIRECTS THE USER WHEN THE BUTTON DONE IS CLICKED...ERROR
+    // does not make distinction between buttons in signup and login pages
+    // redirects even if credentials are wrong
+    if(isLogin){
+     // window.location.href ="/";
+    } 
+    
+    
     fetch(`${API_URL}/${isLogin ? "login" : "signup"}`, {
       method: "POST",
       mode: "cors",
@@ -94,6 +101,12 @@ const AuthScreen2 = () => {
             onLoggedIn(jsonRes.token);
             setIsError(false);
             setMessage(jsonRes.message);
+          }
+
+          if(jsonRes.message == "user logged in"){
+            console.log("logged in");
+            //window.location.href = "/";
+
           }
         } catch (err) {
           console.log(err);
