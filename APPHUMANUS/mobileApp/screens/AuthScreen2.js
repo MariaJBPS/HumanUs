@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   TextInput,
 } from "react-native";
-import {Navigate} from "react-router-dom";
+
 
 const API_URL = "http://localhost:5000"; // local?
 
@@ -71,6 +71,8 @@ const AuthScreen2 = () => {
       password,
     };
     console.log("on submit" + `${API_URL}/${isLogin ? "login" : "signup"}`);
+    // redirect the user to the feed page
+    window.location.href ="/";
     fetch(`${API_URL}/${isLogin ? "login" : "signup"}`, {
       method: "POST",
       mode: "cors",
@@ -93,14 +95,6 @@ const AuthScreen2 = () => {
             setIsError(false);
             setMessage(jsonRes.message);
           }
-
-          // redirect the user to the home page
-          if (jsonRes.message === "user logged in") {
-             console.log("logged in");
-          // <Navigate to ="/" />;
-          // 
-          //res.redirect("/"); // error: not a function
-        }
         } catch (err) {
           console.log(err);
         }
