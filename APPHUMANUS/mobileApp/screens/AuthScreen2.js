@@ -76,7 +76,7 @@ const AuthScreen2 = () => {
     // does not make distinction between buttons in signup and login pages
     // redirects even if credentials are wrong
     if(isLogin){
-     // window.location.href ="/";
+     window.location.href ="/";
     } 
     
     
