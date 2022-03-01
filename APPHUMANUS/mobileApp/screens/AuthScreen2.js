@@ -76,7 +76,7 @@ const AuthScreen2 = () => {
     // and also if credentials are correct
     if (
       `${API_URL}/${isLogin ? "login" : "signup"}` ==
-      "http://localhost:5000/login"
+      "http://localhost:5000/login" //&& 
     ) {
       console.log("test");
       window.location.href = "/";
