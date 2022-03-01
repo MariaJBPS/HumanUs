@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   TextInput,
 } from "react-native";
-
+import axios from "axios";
 
 const API_URL = "http://localhost:5000"; // local?
 
@@ -23,7 +23,7 @@ const AuthScreen2 = () => {
   const [isLogin, setIsLogin] = useState(true);
 
   // declare a global variable
-  window.isLogin = isLogin; 
+  window.isLogin = isLogin;
 
   //change login boolean value
   // depending whether you're clicking
@@ -70,16 +70,18 @@ const AuthScreen2 = () => {
       email,
       password,
     };
-    console.log("on submit" + `${API_URL}/${isLogin ? "login" : "signup"}`);
+    console.log("on submit " + `${API_URL}/${isLogin ? "login" : "signup"}`);
     // redirect the user to the feed page
-    //  REDIRECTS THE USER WHEN THE BUTTON DONE IS CLICKED...ERROR
-    // does not make distinction between buttons in signup and login pages
-    // redirects even if credentials are wrong
-    if(isLogin){
-     window.location.href ="/";
-    } 
-    
-    
+    // check if you're in login page
+    // and also if credentials are correct
+    if (
+      `${API_URL}/${isLogin ? "login" : "signup"}` ==
+      "http://localhost:5000/login"
+    ) {
+      console.log("test");
+      window.location.href = "/";
+    }
+
     fetch(`${API_URL}/${isLogin ? "login" : "signup"}`, {
       method: "POST",
       mode: "cors",
@@ -95,18 +97,16 @@ const AuthScreen2 = () => {
             // errors during sign up/login
             setIsError(true);
             setMessage(jsonRes.message);
-          } 
-          else {
+          } else {
             // if status is 200, then user is logged/signed up in succesfully
             onLoggedIn(jsonRes.token);
             setIsError(false);
             setMessage(jsonRes.message);
           }
 
-          if(jsonRes.message == "user logged in"){
+          if (jsonRes.message == "user logged in") {
             console.log("logged in");
             //window.location.href = "/";
-
           }
         } catch (err) {
           console.log(err);
@@ -163,7 +163,7 @@ const AuthScreen2 = () => {
 
           <TouchableOpacity style={styles.buttonAlt} onPress={onChangeHandler}>
             <Text style={styles.buttonAltText}>
-             { /* if on login page, button text changes to Sign up, else.. */}
+              {/* if on login page, button text changes to Sign up, else.. */}
               {isLogin ? "Sign Up" : "Log In"}
             </Text>
           </TouchableOpacity>
