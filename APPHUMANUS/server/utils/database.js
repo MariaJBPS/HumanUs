@@ -10,6 +10,6 @@ sequelize
   .then(() => console.log("db connected"))
   .catch((e) => console.log(`db error ${e}`));
 
-//sequelize.sync({force : false});
+
 
 export default sequelize;
