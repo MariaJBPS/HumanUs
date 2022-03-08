@@ -94,6 +94,7 @@ const ProfilePage = ({ navigation }) => {
           />
           <Text>Enivroment</Text>
         </View>
+  
       </View>
       {/* </ScrollView> */}
       {/* <View>
@@ -124,7 +125,9 @@ const ProfilePage = ({ navigation }) => {
           'Littering',
           'People'
         ]} /> */}
+        
     </>
+    
   );
 };
 

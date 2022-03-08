@@ -5,7 +5,7 @@ import {
   Button,
   StyleSheet,
   Image,
-  ScrollView,
+  ScrollView
 } from "react-native";
 //test
 import { Link } from "react-router-dom";
@@ -92,6 +92,19 @@ const Feed = () => {
           <Button title="Youth" />
         </View>
       </ScrollView>
+
+      {/* navbar */}
+      <View style={styles.Navigation}>
+        <View style={styles.NavButton}>
+          <Button title={<Link to="/">Home</Link>}  />
+        </View>
+        <View style={styles.NavButton}>
+          <Button title={<Link to="/pathToBeAdded">Past/Active Jobs</Link>} />
+        </View>
+        <View style={styles.NavButton}>
+          <Button title={<Link to="/profile">Profile</Link>} />
+        </View>
+      </View>
     </View>
   );
 };
@@ -123,5 +136,15 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     Height: "50%",
   },
+  Navigation: {
+    backgroundColor: 'orange',
+    Width: '100%',
+    height: '25%',
+    flexDirection: 'row'
+    },
+    NavButton:{
+    marginLeft: 15, 
+    alignItems: 'center'
+    },
 });
 export default Feed;
