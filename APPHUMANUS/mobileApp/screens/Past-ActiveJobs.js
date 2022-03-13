@@ -80,9 +80,11 @@ const styles = StyleSheet.create({
   },
   Navigation: {
     backgroundColor: "black",
-    Width: "100%",
+    width: "100%",
     flexDirection: "row",
     justifyContent: "center",
+    position: 'fixed',
+    top:"91.5%",
   },
   NavButton: {
     color: "white",
