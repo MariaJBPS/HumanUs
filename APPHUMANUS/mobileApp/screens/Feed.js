@@ -5,10 +5,13 @@ import {
   Button,
   StyleSheet,
   Image,
-  ScrollView
+  ScrollView, TouchableOpacity
 } from "react-native";
 //test
 import { Link } from "react-router-dom";
+import EntypoIcon from "react-native-vector-icons/Entypo";
+import IonIcon from "react-native-vector-icons/Ionicons";
+import FoundationIcon from "react-native-vector-icons/Foundation";
 
 const Feed = () => {
   return (
@@ -93,19 +96,36 @@ const Feed = () => {
         </View>
       </ScrollView>
 
+
       {/* navbar */}
-      <View style={styles.Navigation}>
+    <View style={styles.Navigation}>
         <View style={styles.NavButton}>
-          <Button title={<Link to="/">Home</Link>}  />
+          <TouchableOpacity>
+            <Link to="/past-activejobs" style={styles.buttonTxt}>
+              <FoundationIcon name="clipboard" color="white" size={35} />
+            </Link>
+          </TouchableOpacity>
         </View>
         <View style={styles.NavButton}>
-          <Button title={<Link to="/past-activejobs">Past/Active Jobs</Link>} />
+          <TouchableOpacity>
+            <Link to="/" style={styles.buttonTxt}>
+              <EntypoIcon name="home" color="white" size={35} />
+            </Link>
+          </TouchableOpacity>
         </View>
         <View style={styles.NavButton}>
-          <Button title={<Link to="/profile">Profile</Link>} />
+          <TouchableOpacity>
+              <View style={{flexDirection:'column'}}>
+            <Link to="/profile" style={styles.buttonTxt}>
+              <IonIcon name="person-circle-outline" color="white" size={35} />
+            </Link>
+            </View>
+          </TouchableOpacity>
         </View>
       </View>
     </View>
+
+
   );
 };
 
@@ -137,14 +157,17 @@ const styles = StyleSheet.create({
     Height: "50%",
   },
   Navigation: {
-    backgroundColor: 'orange',
-    Width: '100%',
-    //height: '25%',
-    flexDirection: 'row'
-    },
-    NavButton:{
-    marginLeft: 15, 
-    alignItems: 'center'
-    },
+    backgroundColor: "black",
+    Width: "100%",
+    flexDirection: "row",
+    justifyContent: "center",
+  },
+  NavButton: {
+    color: "white",
+    alignItems: "center",
+    paddingLeft: 50,
+    paddingRight: 50,
+    padding: 20,
+  },
 });
 export default Feed;
