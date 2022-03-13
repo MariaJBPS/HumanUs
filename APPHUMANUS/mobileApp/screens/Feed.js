@@ -5,10 +5,13 @@ import {
   Button,
   StyleSheet,
   Image,
-  ScrollView,
+  ScrollView, TouchableOpacity
 } from "react-native";
 //test
 import { Link } from "react-router-dom";
+import EntypoIcon from "react-native-vector-icons/Entypo";
+import IonIcon from "react-native-vector-icons/Ionicons";
+import FoundationIcon from "react-native-vector-icons/Foundation";
 
 const Feed = () => {
   return (
@@ -92,7 +95,37 @@ const Feed = () => {
           <Button title="Youth" />
         </View>
       </ScrollView>
+
+
+      {/* navbar */}
+    <View style={styles.Navigation}>
+        <View style={styles.NavButton}>
+          <TouchableOpacity>
+            <Link to="/past-activejobs" style={styles.buttonTxt}>
+              <FoundationIcon name="clipboard" color="white" size={35} />
+            </Link>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.NavButton}>
+          <TouchableOpacity>
+            <Link to="/" style={styles.buttonTxt}>
+              <EntypoIcon name="home" color="white" size={35} />
+            </Link>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.NavButton}>
+          <TouchableOpacity>
+              <View style={{flexDirection:'column'}}>
+            <Link to="/profile" style={styles.buttonTxt}>
+              <IonIcon name="person-circle-outline" color="white" size={35} />
+            </Link>
+            </View>
+          </TouchableOpacity>
+        </View>
+      </View>
     </View>
+
+
   );
 };
 
@@ -122,6 +155,21 @@ const styles = StyleSheet.create({
     marginTop: 15,
     borderRadius: 5,
     Height: "50%",
+  },
+  Navigation: {
+    backgroundColor: "black",
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "center",
+    position: 'fixed',
+    top:"91.5%",
+  },
+  NavButton: {
+    color: "white",
+    alignItems: "center",
+    paddingLeft: 50,
+    paddingRight: 50,
+    padding: 20,
   },
 });
 export default Feed;
