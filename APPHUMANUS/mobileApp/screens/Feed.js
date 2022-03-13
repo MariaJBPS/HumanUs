@@ -99,7 +99,7 @@ const Feed = () => {
           <Button title={<Link to="/">Home</Link>}  />
         </View>
         <View style={styles.NavButton}>
-          <Button title={<Link to="/pathToBeAdded">Past/Active Jobs</Link>} />
+          <Button title={<Link to="/past-activejobs">Past/Active Jobs</Link>} />
         </View>
         <View style={styles.NavButton}>
           <Button title={<Link to="/profile">Profile</Link>} />
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
   Navigation: {
     backgroundColor: 'orange',
     Width: '100%',
-    height: '25%',
+    //height: '25%',
     flexDirection: 'row'
     },
     NavButton:{

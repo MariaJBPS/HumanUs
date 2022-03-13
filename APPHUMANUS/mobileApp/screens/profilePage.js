@@ -19,6 +19,7 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import Select from "react-select";
 //add a checkbox instaed of scroll
 import Multiselect from "multiselect-react-dropdown";
+import {Link} from 'react-router-dom';
 const ProfilePage = ({ navigation }) => {
   /* const pressHandler = () => {
     navigation.navigate("Sign Up"); // should match the screen names in App.js
@@ -32,7 +33,7 @@ const ProfilePage = ({ navigation }) => {
   const [isSelected, setSelection] = useState(false);
 
   return (
-    <>
+    <ScrollView>
       <View style={styles.mainView}>
         <View style={styles.topView}></View>
         {/* <ScrollView style={styles.bottomView}> */}
@@ -126,7 +127,19 @@ const ProfilePage = ({ navigation }) => {
           'People'
         ]} /> */}
         
-    </>
+    
+    <View style={styles.Navigation}>
+    <View style={styles.NavButton}>
+      <Button title={<Link to="/">Home</Link>}  />
+    </View>
+    <View style={styles.NavButton}>
+      <Button title={<Link to="/past-activejobs">Past/Active Jobs</Link>} />
+    </View>
+    <View style={styles.NavButton}>
+      <Button title={<Link to="/profile">Profile</Link>} />
+    </View>
+  </View>
+  </ScrollView>
     
   );
 };
@@ -236,6 +249,18 @@ const styles = StyleSheet.create({
     width: 137,
     backgroundColor: "#bfbfbf",
   },
+  Navigation: {
+    backgroundColor: 'orange',
+    Width: '100%',
+    //height: '25%',
+    flexDirection: 'row'
+    },
+    NavButton:{
+    marginLeft: 15, 
+    alignItems: 'center',
+    
+    //background: 'orange'
+    },
 });
 
 export default ProfilePage;
