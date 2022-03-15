@@ -101,7 +101,7 @@ const Feed = () => {
     <View style={styles.Navigation}>
         <View style={styles.NavButton}>
           <TouchableOpacity>
-            <Link to="/past-activejobs" style={styles.buttonTxt}>
+            <Link to="/activejobs" style={styles.buttonTxt}>
               <FoundationIcon name="clipboard" color="white" size={35} />
             </Link>
           </TouchableOpacity>
