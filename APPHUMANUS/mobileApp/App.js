@@ -11,7 +11,11 @@ import { ProfilePage } from "./screens";
 
 import {Animals} from "./screens";
 
-import {PastActiveJobs} from "./screens";
+//import {PastActiveJobs} from "./screens";
+
+import {Jobs} from "./screens";
+import {JobsA} from "./screens";
+
 
 //wrap all your pages in this router
 export default function App() {
@@ -25,7 +29,9 @@ export default function App() {
         <Route path="/" element={<Feed />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/animals" element={<Animals />} />
-        <Route path="/past-activejobs" element={<PastActiveJobs />}/>
+        {/* <Route path="/past-activejobs" element={<PastActiveJobs />}/> */}
+        <Route path="/activejobs" element={<JobsA />}/>
+        <Route path="/pastjobs" element={<Jobs />}/>
       </Routes>
     </Router>
   );
