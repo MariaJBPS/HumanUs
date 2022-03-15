@@ -3,7 +3,8 @@ import bcrypt from "bcryptjs";
 
 import jwt from "jsonwebtoken";
 
-import User from "../models/user.js";// may need to just import somthing else
+// import User from "../models/user.js";// may need to just import somthing else
+import User from "../models/user.js";
 
 /* signup registers users in the database.
 First, it checks if the email provided has already been registered.
@@ -32,9 +33,9 @@ const signup = (req, res, next) => {
           } else if (passwordHash) {
             console.log("creating user");
             User.create({
+              email: req.body.email,
               firstName: req.body.firstName,
               lastName: req.body.lastName,
-              email: req.body.email, //move this to the top
               password: passwordHash,
             })
               .then(() => {
