@@ -5,7 +5,8 @@ import {
   Button,
   StyleSheet,
   Image,
-  ScrollView, TouchableOpacity
+  ScrollView,
+  TouchableOpacity,
 } from "react-native";
 //test
 import { Link } from "react-router-dom";
@@ -13,10 +14,27 @@ import EntypoIcon from "react-native-vector-icons/Entypo";
 import IonIcon from "react-native-vector-icons/Ionicons";
 import FoundationIcon from "react-native-vector-icons/Foundation";
 
+const API_URL = "http://localhost:5000";
+
+const getAllJobs = () => {
+  fetch(`${API_URL}/feed`, {
+    method: "GET",
+    mode: "cors",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
+};
 const Feed = () => {
   return (
     <View>
+
       <ScrollView style={styles.mainFeed}>
+        <View>{getAllJobs}</View>
         <Text style={styles.Header}>All Jobs</Text>
         <View style={styles.Contain}>
           {/* images not showing */}
@@ -96,9 +114,8 @@ const Feed = () => {
         </View>
       </ScrollView>
 
-
       {/* navbar */}
-    <View style={styles.Navigation}>
+      <View style={styles.Navigation}>
         <View style={styles.NavButton}>
           <TouchableOpacity>
             <Link to="/activejobs" style={styles.buttonTxt}>
@@ -115,17 +132,15 @@ const Feed = () => {
         </View>
         <View style={styles.NavButton}>
           <TouchableOpacity>
-              <View style={{flexDirection:'column'}}>
-            <Link to="/profile" style={styles.buttonTxt}>
-              <IonIcon name="person-circle-outline" color="white" size={35} />
-            </Link>
+            <View style={{ flexDirection: "column" }}>
+              <Link to="/profile" style={styles.buttonTxt}>
+                <IonIcon name="person-circle-outline" color="white" size={35} />
+              </Link>
             </View>
           </TouchableOpacity>
         </View>
       </View>
     </View>
-
-
   );
 };
 
@@ -161,8 +176,8 @@ const styles = StyleSheet.create({
     width: "100%",
     flexDirection: "row",
     justifyContent: "center",
-    position: 'fixed',
-    top:"91.5%",
+    position: "fixed",
+    top: "91.5%",
   },
   NavButton: {
     color: "white",

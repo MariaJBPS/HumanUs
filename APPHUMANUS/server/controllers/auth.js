@@ -3,8 +3,8 @@ import bcrypt from "bcryptjs";
 
 import jwt from "jsonwebtoken";
 
-// import User from "../models/user.js";// may need to just import somthing else
-import User from "../models/user.js";
+
+import { User, Job, Job_Cause, Job_Application, Cause } from "../models/user.js";
 
 /* signup registers users in the database.
 First, it checks if the email provided has already been registered.
@@ -110,6 +110,8 @@ const login = (req, res, next) => {
     });
 };
 
+
+
 //isAuth asks for the secret token and, if it is provided, proceeds to verify it.
 //If everything goes well, it will finally respond with the private resource.
 //In this case, that resource will be just a message containing “here is your resource”.
@@ -131,9 +133,7 @@ const isAuth = (req, res, next) => {
   if (!decodedToken) {
     res.status(401).json({ message: "unauthorized" });
   } else {
-    res.status(200).json({ message: "here is your resource" }); //send the user to Feed
-    //something here to allow screen redirection?
-    //res.redirect("/");
+    res.status(200).json({ message: "here is your resource" }); 
   }
 };
 

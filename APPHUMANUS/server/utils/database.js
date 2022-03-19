@@ -7,10 +7,7 @@ import {
   Job_Application,
   Cause,
 } from "../models/user.js";
-// import Job from "../models/job.js";
-// import Job_Cause from "../models/job_cause.js";
-// import Job_Application from "../models/job_application.js";
-// import Cause from "../models/cause.js";
+
 
 const sequelize = new Sequelize("comp6000_11", "comp6000_11", "yp1olyb", {
   dialect: "mysql",
