@@ -14,9 +14,12 @@ app.use(express.json());
 
 
 app.use(router);
+
 sequelize.authenticate();
 sequelize.sync({force : false}). // avoids losing data, so it doesnt create tables again
 then(() => {console.log('yes re-sync done')}); 
+
+
 
 // show all sequelize tables
 sequelize

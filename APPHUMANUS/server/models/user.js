@@ -19,6 +19,13 @@ const sequelize = new Sequelize("comp6000_11", "comp6000_11", "yp1olyb", {
     logging: true, // set to false for deployed version
   },
 
+  pool: {
+    max: 5,
+    min: 0,
+    acquire: 30000,
+    idle: 10000
+  }
+
   
 });
 

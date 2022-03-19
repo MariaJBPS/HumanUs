@@ -16,25 +16,29 @@ import FoundationIcon from "react-native-vector-icons/Foundation";
 
 const API_URL = "http://localhost:5000";
 
-const getAllJobs = () => {
-  fetch(`${API_URL}/feed`, {
-    method: "GET",
-    mode: "cors",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+// const getAllJobs = () => {
+//   fetch(`${API_URL}/feed`, {
+//     method: "GET",
+//     mode: "cors",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
 
-};
+// };
+
+const getAllJobs = fetch("/feed")
+        .then((response) => response.json());
+
 const Feed = () => {
   return (
     <View>
 
       <ScrollView style={styles.mainFeed}>
-        <View>{getAllJobs}</View>
+        {/* <View>{getAllJobs}</View> */}
         <Text style={styles.Header}>All Jobs</Text>
         <View style={styles.Contain}>
           {/* images not showing */}
