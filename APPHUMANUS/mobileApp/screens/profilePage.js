@@ -100,36 +100,7 @@ const ProfilePage = ({ navigation }) => {
         </View>
   
       </View>
-      {/* </ScrollView> */}
-      {/* <View>
-    <Multiselect style={styles.textInput}
-        isObject={false}
-        onKeyPressFn={function noRefCheck() { } }
-        onRemove={function noRefCheck() { } }
-        onSearch={function noRefCheck() { } }
-        onSelect={function noRefCheck() { } }
-        options={[
-          'Animals',
-          'Elderly',
-          'Enivroment',
-          'Littering',
-          'People'
-        ]} />
-    </View> */}
-      {/* <Multiselect style={styles.textInput}
-        isObject={false}
-        onKeyPressFn={function noRefCheck() { } }
-        onRemove={function noRefCheck() { } }
-        onSearch={function noRefCheck() { } }
-        onSelect={function noRefCheck() { } }
-        options={[
-          'Animals',
-          'Elderly',
-          'Enivroment',
-          'Littering',
-          'People'
-        ]} /> */}
-        
+
     
     {/* navbar */}
     <View style={styles.Navigation}>

@@ -18,6 +18,12 @@ sequelize.authenticate();
 sequelize.sync({force : false}).
 then(() => {console.log('yes re-sync done')}); // avoids losing data, so it doesnt create tables again
 
+// show all sequelize tables
+sequelize
+.getQueryInterface().showAllSchemas().then(result => {
+    console.log(result);
+  });
+
 
 app.listen(5000); // port where the server will be listening for requests
 

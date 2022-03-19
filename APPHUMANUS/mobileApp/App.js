@@ -29,7 +29,7 @@ export default function App() {
         <Route path="/" element={<Feed />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/animals" element={<Animals />} />
-        {/* <Route path="/past-activejobs" element={<PastActiveJobs />}/> */}
+
         <Route path="/activejobs" element={<JobsA />}/>
         <Route path="/pastjobs" element={<Jobs />}/>
       </Routes>
