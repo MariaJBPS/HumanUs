@@ -15,8 +15,8 @@ app.use(express.json());
 
 app.use(router);
 sequelize.authenticate();
-sequelize.sync({force : false}).
-then(() => {console.log('yes re-sync done')}); // avoids losing data, so it doesnt create tables again
+sequelize.sync({force : false}). // avoids losing data, so it doesnt create tables again
+then(() => {console.log('yes re-sync done')}); 
 
 // show all sequelize tables
 sequelize
@@ -27,5 +27,10 @@ sequelize
 
 app.listen(5000); // port where the server will be listening for requests
 
-//sequelize.close();
+
+// await sequelize.close();
+//sequelize.after(() => { sequelize.close() });
+
+// was in package json test
+//npx mocha --exit test/**/*.js
 

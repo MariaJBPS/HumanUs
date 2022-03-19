@@ -30,7 +30,6 @@ router.post("/signup", signup);
 
 router.get("/private", isAuth);
 
-
 // Get all jobs
 router.get("/", async (req, res) => {
   try {
@@ -40,6 +39,33 @@ router.get("/", async (req, res) => {
   } catch (err) {
     console.log("couldn't retrieve any jobs", err);
     res.status(500).json({ message: "no jobs retrieved" });
+  }
+});
+
+// Get all causes
+router.get("/causes", async (req, res) => {
+  try {
+    console.log("trying to get all causes :'(");
+    const causes = await Cause.findAll({ attributes: ["description"] });
+    return res.status(200).json(causes);
+  } catch (err) {
+    console.log("couldn't retrieve any causes", err);
+    res.status(500).json({ message: "no causes retrieved" });
+  }
+});
+
+// Get all job applications for a specific user
+router.get("/job_applications/:email", async (req, res) => {
+  const email = req.params.email;
+  try {
+    console.log("trying to get all job applications :'(");
+    const applications = await Job_Application.findOne({
+      where: { email },
+    });
+    return res.status(200).json(applications);
+  } catch (err) {
+    console.log("couldn't retrieve any job applications", err);
+    res.status(500).json({ message: "no job applications retrieved" });
   }
 });
 
