@@ -29,7 +29,18 @@ const sequelize = new Sequelize("comp6000_11", "comp6000_11", "yp1olyb", {
     acquire: 30000,
     idle: 10000
   }
-});
+
+
+} );
+
+// (async () => {
+//   sequelize
+//   .authenticate()
+//   .then(() => console.log("db connected, here"))
+//   .catch((e) => console.log(`db error ${e}`));
+
+//   //await sequelize.close();
+// }) ();
 
 // sequelize.addModels([User,Job, Cause, Job_Application, Job_Cause ]);
 
@@ -43,10 +54,13 @@ Job.belongsToMany(User, { through: Job_Application });
 Job.belongsToMany(Cause, { through: Job_Cause });
 Cause.belongsToMany(Job, { through: Job_Cause });
 
+
 sequelize
   .authenticate()
   .then(() => console.log("db connected, here"))
   .catch((e) => console.log(`db error ${e}`));
+
+
 
 
 
