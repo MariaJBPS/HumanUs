@@ -19,6 +19,13 @@ const sequelize = new Sequelize("comp6000_11", "comp6000_11", "yp1olyb", {
     logging: true, // set to false for deployed version
   },
 
+  pool: {
+    max: 5,
+    min: 0,
+    acquire: 30000,
+    idle: 10000
+  }
+
   
 });
 
@@ -58,9 +65,6 @@ export const User = sequelize.define("user", {
 		}
 );
 
-/*
- *	Declare Job model with Sequelize instance
- */
 export const Job = sequelize.define("job", {
 	/*
 	 * Define the object model for 'job' table
@@ -99,7 +103,7 @@ export const Job = sequelize.define("job", {
 	  type: Sequelize.DATE,
 	  allowNull: false,
 	},
-	duration_days: {
+	job_duration_days: {
 	  type: Sequelize.INTEGER,
 	  defaultValue: 1,
 	}
@@ -108,6 +112,28 @@ export const Job = sequelize.define("job", {
 	modelName: 'Job',
 	tableName: 'job' 
   });
+
+export const Cause = sequelize.define("cause", {
+	/*
+	* Define object model for 'cause' table 
+	*/
+
+		id: {
+			type: Sequelize.INTEGER, 
+			primaryKey: true,
+			auto_increment: true
+		},
+		description: {
+			type: Sequelize.STRING(255), 
+			allowNull: false, 
+			unique: true 
+		}
+	},{
+	
+		sequelize: sequelize,
+		modelName: 'Cause',
+		tableName: 'cause' 
+});
 
 export const Job_Cause = sequelize.define("job_cause", {
 	/* 
@@ -195,38 +221,20 @@ export const Job_Application = sequelize.define("job_application", {
 	],
   });
 
-export const Cause = sequelize.define("cause", {
-	/*
-	* Define object model for 'cause' table 
-	*/
+ 
 
-		id: {
-			type: Sequelize.INTEGER, 
-			primaryKey: true,
-			auto_increment: true
-		},
-		description: {
-			type: Sequelize.STRING(255), 
-			allowNull: false, 
-			unique: true 
-		}
-	},{
-	
-		sequelize: sequelize,
-		modelName: 'Cause',
-		tableName: 'cause' 
-}); 
+// added aliases 'as' and foreignkeys
 
 // Resolve m:m relationship between Volunteer and Job
 // through the Job_Application junction table (model)
-User.belongsToMany(Job, { through: Job_Application });
-Job.belongsToMany(User, { through: Job_Application });
+User.belongsToMany(Job, { through: Job_Application});
+Job.belongsToMany(User, {through: Job_Application});
 
 // Resolve m:m relationship between Job and Cause
 // through the Job_Cause junction table (model)
-Job.belongsToMany(Cause, { through: Job_Cause });
-Cause.belongsToMany(Job, { through: Job_Cause });
+Job.belongsToMany(Cause, {through: Job_Cause});
+Cause.belongsToMany(Job, {through: Job_Cause});
 
-export default {User, Job, Job_Cause, Job_Application, Cause};
+export default {User, Job, Cause,Job_Cause, Job_Application};
 
 //export default User;
