@@ -9,7 +9,8 @@ import {
   Job_Cause,
   Job_Application,
 } from "../models/user.js";
-
+import sequelize from "../utils/database.js";
+import { Op } from "@sequelize/core";
 const router = express.Router();
 
 User.belongsToMany(Job, {
@@ -102,18 +103,39 @@ router.get("/users/:email", async (req, res) => {
   }
 });
 
-// list all jobs in a cause
+// Get all past jobs, for past jobs page
+router.get("/pastjobs", async (req, res) => {
+  // initiliase current date
+  const currentD = new Date();
+  const date = `${currentD.getDate()}/${
+    currentD.getMonth() + 1
+  }/${currentD.getFullYear()}`;
+  try {
+    console.log("trying to get jobs that are past today's date");
+    const jobs = await Job.findAll({
+      attributes: ["title", "start_date"],
+      where: { start_date: { [Op.lt]: "2022-03-12" } }, //the start date is after today's date!
+      // where: {title: "Trusts and Major Gifts Officer"}
+    });
+    return res.status(200).json(jobs);
+  } catch (err) {
+    console.log("couldn't retrieve any past jobs", err);
+    res.status(500).json({ message: "no past jobs retrieved" });
+  }
+});
+
+//  !these are not working
+// list all jobs in a cause not working
 router.get("/jobs/:cause_id", async (req, res) => {
   const cause_id = req.params.cause_id;
   try {
-    console.log("trying to get all causes :'(");
-    const causes = await Job.findAll({
-      where: {
-        "$Cause.cause_id$": cause_id,
-      },
+    console.log("trying to get all jobs in a cause");
+    const causes = await Job_Cause.findAll({
+      where: { cause_id }, // where cause_id = param
       include: {
-        model: Cause,
-        as: "Cause",
+        model: Job,
+        as: "Job",
+        attributes: { exclude: ["id"] },
       },
     });
     return res.status(200).json(causes);
@@ -126,38 +148,23 @@ router.get("/jobs/:cause_id", async (req, res) => {
 });
 
 // not working, says null.. but there is data in the cause table
-// Get all causes
+
+// tried using raw sql and still nothing
 router.get("/causes", async (req, res) => {
   // const desc = req.params.desc;
   try {
     console.log("trying to get all causes :'(");
-    const causes = await Cause.findAll({
-      attributes: ["description"],
-      // where: { desc },
+
+    const causes = sequelize.query("SELECT description FROM cause", {
+      type: QueryTypes.SELECT,
     });
+
     return res.status(200).json(causes);
   } catch (err) {
     console.log("couldn't retrieve any causes", err);
     res.status(500).json({ message: "no causes retrieved" });
   }
 });
-
-// Get all jobs, for feeds page
-// router.get("/pastjobs", async (req, res) => {
-//   try {
-//     console.log("trying to get jobs that are past today's date :'(");
-//     const jobs = await Job.findAll({
-//       attributes: ["title", "start_date"],
-//       where : {} the start date is after today's date!
-//     });
-//     return res.status(200).json(jobs); // {jobs}
-//   } catch (err) {
-//     console.log("couldn't retrieve any past jobs", err);
-//     res.status(500).json({ message: "no past jobs retrieved" });
-//   }
-// });
-
-// the APIs below dont work, seems like the tables arent associated
 
 // Get all job applications for a specific user
 // user is not associated to job_application!!!!
