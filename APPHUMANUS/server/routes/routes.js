@@ -1,6 +1,6 @@
 // defines our API endpoints using express
 import express from "express";
-import { Sequelize } from "sequelize/dist/index.js"; 
+
 //import Moment from 'react-moment';
 import moment from 'moment';
 import 'moment-timezone';
@@ -9,10 +9,9 @@ import {
   User,
   Job,
   Cause,
-  Job_Cause,
-  Job_Application,
+
 } from "../models/user.js";
-import sequelize from "../utils/database.js";
+
 import { Op } from "@sequelize/core";
 const router = express.Router();
 
@@ -54,7 +53,7 @@ router.get("/job/:id", async (req, res) => {
   try {
     console.log("trying to get this job :'(");
     const job = await Job.findOne({
-      attributes: [
+      attributes: [ 
         "title",
         "charity_email",
         "charity_name",
