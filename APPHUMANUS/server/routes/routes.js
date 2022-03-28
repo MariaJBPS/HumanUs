@@ -1,6 +1,9 @@
 // defines our API endpoints using express
 import express from "express";
-import { Sequelize } from "sequelize/dist/index.js"; // what ?
+import { Sequelize } from "sequelize/dist/index.js"; 
+//import Moment from 'react-moment';
+import moment from 'moment';
+import 'moment-timezone';
 import { signup, login, isAuth } from "../controllers/auth.js";
 import {
   User,
@@ -13,21 +16,6 @@ import sequelize from "../utils/database.js";
 import { Op } from "@sequelize/core";
 const router = express.Router();
 
-User.belongsToMany(Job, {
-  through: Job_Application,
-});
-Job.belongsToMany(User, {
-  through: Job_Application,
-});
-
-// Resolve m:m relationship between Job and Cause
-// through the Job_Cause junction table (model)
-Job.belongsToMany(Cause, {
-  through: Job_Cause,
-});
-Cause.belongsToMany(Job, {
-  through: Job_Cause,
-});
 
 // defines our  endpoints:
 router.post("/login", login);
@@ -61,7 +49,7 @@ router.get("/", async (req, res) => {
 });
 
 // get a specific job by its id! for job details
-router.get("/:id", async (req, res) => {
+router.get("/job/:id", async (req, res) => {
   const id = req.params.id;
   try {
     console.log("trying to get this job :'(");
@@ -77,6 +65,7 @@ router.get("/:id", async (req, res) => {
         "job_duration_days",
       ],
       where: { id },
+      // where: { '$id$': id},
     });
     return res.status(200).json(job);
   } catch (err) {
@@ -96,7 +85,7 @@ router.get("/users/:email", async (req, res) => {
       },
       where: { email },
     });
-    return res.status(200).json(user); // {jobs}
+    return res.status(200).json(user); 
   } catch (err) {
     console.log("couldn't retrieve this user", err);
     res.status(500).json({ message: "no user retrieved" });
@@ -104,41 +93,54 @@ router.get("/users/:email", async (req, res) => {
 });
 
 // Get all past jobs, for past jobs page
-router.get("/pastjobs", async (req, res) => {
+router.get("/past/jobs", async (req, res) => {
   // initiliase current date
-  const currentD = new Date();
-  const date = `${currentD.getDate()}/${
-    currentD.getMonth() + 1
-  }/${currentD.getFullYear()}`;
+  const today = moment().format('YYYY-MM-DD HH:mm');
   try {
     console.log("trying to get jobs that are past today's date");
-    const jobs = await Job.findAll({
-      attributes: ["title", "start_date"],
-      where: { start_date: { [Op.lt]: "2022-03-12" } }, //the start date is after today's date!
+    const pastjobs = await Job.findAll({
+      //attributes: ["title", "start_date"],
+      where: {'$start_date$':{[Op.lt]: today }}, //the start date is after today's date!
       // where: {title: "Trusts and Major Gifts Officer"}
     });
-    return res.status(200).json(jobs);
+    return res.status(200).json(pastjobs);
   } catch (err) {
     console.log("couldn't retrieve any past jobs", err);
     res.status(500).json({ message: "no past jobs retrieved" });
   }
 });
 
-//  !these are not working
-// list all jobs in a cause not working
-router.get("/jobs/:cause_id", async (req, res) => {
+//upcoming jobs for active jobs page
+router.get("/upcoming/jobs", async (req, res) => {
+  // initiliase current date
+  const today = moment().format('YYYY-MM-DD HH:mm');
+  try {
+    console.log("trying to get jobs that are after today's date");
+    const pastjobs = await Job.findAll({
+      where: {'$start_date$':{[Op.gte]: today }},
+    });
+    return res.status(200).json(pastjobs);
+  } catch (err) {
+    console.log("couldn't retrieve any upcoming jobs", err);
+    res.status(500).json({ message: "no past upcoming retrieved" });
+  }
+});
+
+// list all jobs in a cause, for filtering
+router.get("/cause/:cause_id", async (req, res) => {
   const cause_id = req.params.cause_id;
+ 
   try {
     console.log("trying to get all jobs in a cause");
-    const causes = await Job_Cause.findAll({
-      where: { cause_id }, // where cause_id = param
+    const CauseTry = await Job.findAll({
+      where: { '$cause_id$':cause_id}, // where cause_id = param
       include: {
-        model: Job,
-        as: "Job",
-        attributes: { exclude: ["id"] },
+        model: Cause,
+        as: "Cause1",
+        // attributes: { exclude: ["id"] },
       },
     });
-    return res.status(200).json(causes);
+    return res.status(200).json(CauseTry);
   } catch (err) {
     console.log("couldn't retrieve any jobs of this cause", err);
     res
@@ -147,36 +149,31 @@ router.get("/jobs/:cause_id", async (req, res) => {
   }
 });
 
-// not working, says null.. but there is data in the cause table
-
-// tried using raw sql and still nothing
-router.get("/causes", async (req, res) => {
-  // const desc = req.params.desc;
+// get all causes, 
+router.get("/allcauses", async (req, res) => {
   try {
-    console.log("trying to get all causes :'(");
-
-    const causes = sequelize.query("SELECT description FROM cause", {
-      type: QueryTypes.SELECT,
-    });
-
-    return res.status(200).json(causes);
+    console.log("trying to get all causes");
+    const allcause = await Cause.findAll();
+    return res.status(200).json(allcause); // {jobs}
   } catch (err) {
     console.log("couldn't retrieve any causes", err);
     res.status(500).json({ message: "no causes retrieved" });
   }
 });
 
+
 // Get all job applications for a specific user
 // user is not associated to job_application!!!!
-router.get("/job_applications/:email", async (req, res) => {
+router.get("/jobapps/:email", async (req, res) => {
   const email = req.params.email;
   try {
     console.log("trying to get all job applications :'(");
-    const applications = await Job_Application.findAll({
+    const applications = await Job.findAll({
+      where: { '$volunteer_email$':email},
       include: {
         model: User,
-        include: Job, // job is a
-        where: { email },
+         as: "User1",
+     
       },
     });
     return res.status(200).json(applications);
@@ -186,37 +183,7 @@ router.get("/job_applications/:email", async (req, res) => {
   }
 });
 
-// Get all job applications
-// user is not associated to job_application!!!!
-router.get("/job_applications", async (req, res) => {
-  try {
-    console.log("trying to get all job applications :'(");
-    const applications = await Job_Application.findAll();
-    return res.status(200).json(applications);
-  } catch (err) {
-    console.log("couldn't retrieve any job applications", err);
-    res.status(500).json({ message: "no job applications retrieved" });
-  }
-});
 
-// Get all job causes
-
-router.get("/job_causes", async (req, res) => {
-  try {
-    console.log("trying to get all job causes :'(");
-    const job_causes = await Job_Cause.findAll({
-      include: {
-        model: Job,
-        Cause,
-        through: ["id"],
-      },
-    });
-    return res.status(200).json(job_causes);
-  } catch (err) {
-    console.log("couldn't retrieve any job causes", err);
-    res.status(500).json({ message: "no job causes retrieved" });
-  }
-});
 
 router.get("/public", (req, res, next) => {
   res.status(200).json({ message: "here is your public resource" });
