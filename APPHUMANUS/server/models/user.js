@@ -221,20 +221,8 @@ export const Job_Application = sequelize.define("job_application", {
 	],
   });
 
- 
 
-// added aliases 'as' and foreignkeys
-
-// Resolve m:m relationship between Volunteer and Job
-// through the Job_Application junction table (model)
-User.belongsToMany(Job, { through: Job_Application});
-Job.belongsToMany(User, {through: Job_Application});
-
-// Resolve m:m relationship between Job and Cause
-// through the Job_Cause junction table (model)
-Job.belongsToMany(Cause, {through: Job_Cause});
-Cause.belongsToMany(Job, {through: Job_Cause});
 
 export default {User, Job, Cause,Job_Cause, Job_Application};
 
-//export default User;
+
