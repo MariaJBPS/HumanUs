@@ -50,31 +50,31 @@ export default class Feed extends React.Component {
               <View style={styles.Contain}>
                 <div>
                   <div>
-                    Job Title: {job.title === null ? "Untitled" : job.title}
+                    Job Title: {job.title === null ? "<Untitled>" : job.title}
                   </div>
                   <div>Start Date: {job.start_date.slice(0, 10)}</div>
                   <div>
                     Job description:{" "}
-                    {job.description === null ? "Untitled" : job.description}
+                    {job.description === null ? "<Untitled>" : job.description}
                   </div>
                   <div>
                     Charity Email:{" "}
-                    {job.charity_email === null ? "Untitled" : job.charity_email}
+                    {job.charity_email === null ? "<Untitled>" : job.charity_email}
                   </div>
                   <div>
                     Charity Name:{" "}
-                    {job.charity_name === null ? "Untitled" : job.charity_name}
+                    {job.charity_name === null ? "<Untitled>" : job.charity_name}
                   </div>
                   <div>
                     Charity Bio:{" "}
-                    {job.charity_bio === null ? "Untitled" : job.charity_bio}
+                    {job.charity_bio === null ? "<Untitled>" : job.charity_bio}
                   </div>
                   <div>Start Date: {job.start_date.slice(0, 10)}</div>
                   <div>Post Date: {job.post_date.slice(0, 10)}</div>
                   <div>
                     Duration:{" "}
                     {job.job_duration_days === null
-                      ? "Untitled"
+                      ? "<Untitled>"
                       : job.job_duration_days + " day"}
                   </div>
                 </div>
