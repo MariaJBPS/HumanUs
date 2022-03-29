@@ -55,6 +55,9 @@ export default class JobsA extends React.Component {
                       Job Title: {active.title === null ? "<Untitled>" : active.title}
                     </div>
                     <div>
+                      Description : {active.description === null ? "<Untitled>" : active.description}
+                    </div>
+                    <div>
                       Start Date : {active.start_date === null ? "<Untitled>" : active.start_date.slice(0,10)}
                     </div>
                   </div>
