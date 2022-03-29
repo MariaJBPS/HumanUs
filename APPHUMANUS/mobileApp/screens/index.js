@@ -5,4 +5,5 @@ import Animals from "./Animals";
 
 import Jobs from "./Jobs";
 import JobsA from "./JobsA";
-export { AuthScreen2, Feed, ProfilePage, Animals, Jobs, JobsA };
+import FlatListDemo from "./FlatListDemo";
+export { AuthScreen2, Feed, ProfilePage, Animals, Jobs, JobsA, FlatListDemo};
