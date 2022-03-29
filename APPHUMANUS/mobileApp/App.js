@@ -15,7 +15,7 @@ import {Animals} from "./screens";
 
 import {Jobs} from "./screens";
 import {JobsA} from "./screens";
-import { FlatListDemo } from "./screens";
+
 
 
 //wrap all your pages in this router
@@ -33,8 +33,6 @@ export default function App() {
 
         <Route path="/activejobs" element={<JobsA />}/>
         <Route path="/pastjobs" element={<Jobs />}/>
-
-        <Route path="/flatlist" element={<FlatListDemo />}/>
       </Routes>
     </Router>
   );
