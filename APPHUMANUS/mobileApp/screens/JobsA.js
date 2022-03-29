@@ -5,6 +5,9 @@ import EntypoIcon from "react-native-vector-icons/Entypo";
 import IonIcon from "react-native-vector-icons/Ionicons";
 import FoundationIcon from "react-native-vector-icons/Foundation";
 const JobsA = () =>{
+  if(email == "sara@gmail.com"){
+    return <Text>{email}</Text>
+  }
 return(
 <SafeAreaView style={styles.Heading}>
 <View style={styles.Navn}>

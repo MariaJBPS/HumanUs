@@ -1,167 +1,124 @@
-import React, { useEffect, useState } from "react";
+// THIS IS THE FLATLIST DEMO
+import React from "react";
 import {
   Text,
   View,
   Button,
   StyleSheet,
-  Image,
   ScrollView,
   TouchableOpacity,
 } from "react-native";
-//test
+
 import { Link } from "react-router-dom";
 import EntypoIcon from "react-native-vector-icons/Entypo";
 import IonIcon from "react-native-vector-icons/Ionicons";
 import FoundationIcon from "react-native-vector-icons/Foundation";
-import axios from "axios";
 
-const API_URL = "http://localhost:5000";
 
-// const getAllJobs = () => {
-//   fetch(`${API_URL}/feed`, {
-//     method: "GET",
-//     mode: "cors",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//   })
-//   .catch((err) => {
-//     console.log(err);
-//   });
 
-// };
+export default class Feed extends React.Component {
+  state = {
+    loading: true,
+    jobs: []
+  };
 
-const Feed = () => {
-  const url = "http://localhost:5000/"; //fetch api that gets all jobs
-  const [job, setJob] = useState(null);
-
-  useEffect(() =>{
-    axios.get(url)
-    .then(response => {setJob(response.data)})
-  }, [url])
-
-  // if job is not null
-  if(job){
-    return(
-      <div>
-        <h2>Job title{job.title}</h2>
-        <p>Job start date{job.start_date}</p>
-      </div>
-    )
+  // fetch all jobs title and start date
+  async componentDidMount() {
+    const url = "http://localhost:5000";
+    const response = await fetch(url);
+    const data = await response.json();
+    this.setState({ jobs: data, loading: false });
+    console.log(data);
   }
-  
-  return (
-    <View>
-      <ScrollView style={styles.mainFeed}>
-        {/* <View>{getAllJobs}</View> */}
-        <Text style={styles.Header}>All Jobs</Text>
-        <View style={styles.Contain}>
-          {/* images not showing */}
-          <Image style={styles.Image} source={require("./Images/aTest.jpeg")} />
-          {/* link test works */}
-          <Button title={<Link to="/animals">Animals</Link>} />
-        </View>
-        <View style={styles.Contain}>
-          <Image
-            style={styles.Image}
-            source={require("./Images/download.jpeg")}
-          />
-          <Button title="Childcare" />
-        </View>
-        <View style={styles.Contain}>
-          <Image style={styles.Image} source={require("./Images/Elder.jpeg")} />
-          <Button title="Elderly" />
-        </View>
-        <View style={styles.Contain}>
-          <Image
-            style={styles.Image}
-            source={require("./Images/Remote1.jpg")}
-          />
-          <Button title="Remote" />
-        </View>
 
-        <View style={styles.Contain}>
-          <Button title="Advocacy" />
-        </View>
-        <View style={styles.Contain}>
-          <Button title="Arts" />
-        </View>
-        <View style={styles.Contain}>
-          <Button title="Disabilities" />
-        </View>
-        <View style={styles.Contain}>
-          <Button title="Disaster recovery" />
-        </View>
-        <View style={styles.Contain}>
-          <Button title="Education" />
-        </View>
-        <View style={styles.Contain}>
-          <Button title="Environment" />
-        </View>
-        <View style={styles.Contain}>
-          <Button title="Food Access" />
-        </View>
-        <View style={styles.Contain}>
-          <Button title="Health" />
-        </View>
-        <View style={styles.Contain}>
-          <Button title="Homelessness" />
-        </View>
-        <View style={styles.Contain}>
-          <Button title="LGBQT+" />
-        </View>
-        <View style={styles.Contain}>
-          <Button title="Mental Health" />
-        </View>
-        <View style={styles.Contain}>
-          <Button title="Mentoring" />
-        </View>
-        <View style={styles.Contain}>
-          <Button title="Sports" />
-        </View>
-        <View style={styles.Contain}>
-          <Button title="Sustainability" />
-        </View>
-        <View style={styles.Contain}>
-          <Button title="War Heroes" />
-        </View>
-        <View style={styles.Contain}>
-          <Button title="Women" />
-        </View>
-        <View style={styles.Contain}>
-          <Button title="Youth" />
-        </View>
-      </ScrollView>
+  render() {
+    if (this.state.loading) {
+      return <div>loading...</div>;
+    }
 
-      {/* navbar */}
-      <View style={styles.Navigation}>
-        <View style={styles.NavButton}>
-          <TouchableOpacity>
-            <Link to="/activejobs" style={styles.buttonTxt}>
-              <FoundationIcon name="clipboard" color="white" size={35} />
-            </Link>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.NavButton}>
-          <TouchableOpacity>
-            <Link to="/" style={styles.buttonTxt}>
-              <EntypoIcon name="home" color="white" size={35} />
-            </Link>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.NavButton}>
-          <TouchableOpacity>
-            <View style={{ flexDirection: "column" }}>
-              <Link to="/profile" style={styles.buttonTxt}>
-                <IonIcon name="person-circle-outline" color="white" size={35} />
+    if (!this.state.jobs.length) {
+      return <div>didn't get any jobs</div>;
+    }
+
+    return (
+      <View>
+        <ScrollView style={styles.mainFeed}>
+          <Text style={styles.Header}>All Jobs</Text>
+
+          <div>
+            {this.state.jobs.map((job) => (
+              <View style={styles.Contain}>
+                <div>
+                  <div>
+                    Job Title: {job.title === null ? "Untitled" : job.title}
+                  </div>
+                  <div>Start Date: {job.start_date.slice(0, 10)}</div>
+                  <div>
+                    Job description:{" "}
+                    {job.description === null ? "Untitled" : job.description}
+                  </div>
+                  <div>
+                    Charity Email:{" "}
+                    {job.charity_email === null ? "Untitled" : job.charity_email}
+                  </div>
+                  <div>
+                    Charity Name:{" "}
+                    {job.charity_name === null ? "Untitled" : job.charity_name}
+                  </div>
+                  <div>
+                    Charity Bio:{" "}
+                    {job.charity_bio === null ? "Untitled" : job.charity_bio}
+                  </div>
+                  <div>Start Date: {job.start_date.slice(0, 10)}</div>
+                  <div>Post Date: {job.post_date.slice(0, 10)}</div>
+                  <div>
+                    Duration:{" "}
+                    {job.job_duration_days === null
+                      ? "Untitled"
+                      : job.job_duration_days + " day"}
+                  </div>
+                </div>
+                {/* clicking apply adds that application to the database */}
+                  <Button title={<Link to="/animals">Apply</Link>} />
+              </View>
+            ))}
+          </div>
+        </ScrollView>
+
+        {/* navbar */}
+        <View style={styles.Navigation}>
+          <View style={styles.NavButton}>
+            <TouchableOpacity>
+              <Link to="/activejobs" style={styles.buttonTxt}>
+                <FoundationIcon name="clipboard" color="white" size={35} />
               </Link>
-            </View>
-          </TouchableOpacity>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.NavButton}>
+            <TouchableOpacity>
+              <Link to="/" style={styles.buttonTxt}>
+                <EntypoIcon name="home" color="white" size={35} />
+              </Link>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.NavButton}>
+            <TouchableOpacity>
+              <View style={{ flexDirection: "column" }}>
+                <Link to="/profile" style={styles.buttonTxt}>
+                  <IonIcon
+                    name="person-circle-outline"
+                    color="white"
+                    size={35}
+                  />
+                </Link>
+              </View>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
-    </View>
-  );
-};
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   mainFeed: {
@@ -184,7 +141,7 @@ const styles = StyleSheet.create({
   Contain: {
     backgroundColor: "lightgrey",
     width: "90%",
-    alignItems: "center",
+    //alignItems: "center",
     marginLeft: 20,
     marginTop: 15,
     borderRadius: 5,
@@ -206,4 +163,3 @@ const styles = StyleSheet.create({
     padding: 20,
   },
 });
-export default Feed;

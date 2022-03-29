@@ -3,8 +3,6 @@ import { Sequelize } from "sequelize"; // create the database connection
 import {
   User,
   Job,
-  Job_Cause,
-  Job_Application,
   Cause,
 } from "../models/user.js";
 
@@ -62,6 +60,7 @@ Cause.belongsToMany(Job, {
   foreignKey: "cause_id",
   otherKey: "job_id",
 });
+
 sequelize
   .authenticate()
   .then(() => console.log("db connected, here"))
