@@ -95,7 +95,14 @@ router.get("/past/jobs", async (req, res) => {
     console.log("trying to get jobs that are past today's date");
     const pastjobs = await Job.findAll({
       attributes: ["title", "start_date"],
-      where: { $start_date$: { [Op.lt]: today } }, //the start date is after today's date!
+      where: {
+        $start_date$: { [Op.lt]: today },
+        $volunteer_email$: "sara@gmail.com",
+      }, //the start date is after today's date!
+      include: {
+        model: User,
+        as: "User1",
+      },
     });
     return res.status(200).json(pastjobs);
   } catch (err) {
@@ -111,7 +118,14 @@ router.get("/upcoming/jobs", async (req, res) => {
   try {
     console.log("trying to get jobs that are after today's date");
     const pastjobs = await Job.findAll({
-      where: { $start_date$: { [Op.gte]: today } },
+      where: {
+        $start_date$: { [Op.gte]: today },
+        $volunteer_email$: "sara@gmail.com",
+      },
+      include: {
+        model: User,
+        as: "User1",
+      },
     });
     return res.status(200).json(pastjobs);
   } catch (err) {
@@ -156,13 +170,14 @@ router.get("/allcauses", async (req, res) => {
 });
 
 // Get all job applications for a specific user
-// user is not associated to job_application!!!!
-router.get("/jobapps/:email", async (req, res) => {
-  const email = req.params.email;
+
+router.get("/jobapps", async (req, res) => {
+  // was jobapps/:email
+  //const email = req.params.email;
   try {
     console.log("trying to get all job applications :'(");
     const applications = await Job.findAll({
-      where: { $volunteer_email$: email },
+      where: { $volunteer_email$: "sara@gmail.com" },
       include: {
         model: User,
         as: "User1",
