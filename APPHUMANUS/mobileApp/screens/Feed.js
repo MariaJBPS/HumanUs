@@ -8,49 +8,18 @@ import {
   ScrollView,
   TouchableOpacity,
 } from "react-native";
-//test
+
 import { Link } from "react-router-dom";
 import EntypoIcon from "react-native-vector-icons/Entypo";
 import IonIcon from "react-native-vector-icons/Ionicons";
 import FoundationIcon from "react-native-vector-icons/Foundation";
-import axios from "axios";
 
-const API_URL = "http://localhost:5000";
-
-// const getAllJobs = () => {
-//   fetch(`${API_URL}/feed`, {
-//     method: "GET",
-//     mode: "cors",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//   })
-//   .catch((err) => {
-//     console.log(err);
-//   });
-
-// };
 
 const Feed = () => {
-  const url = "http://localhost:5000/"; //fetch api that gets all jobs
-  const [job, setJob] = useState(null);
-
-  useEffect(() =>{
-    axios.get(url)
-    .then(response => {setJob(response.data)})
-  }, [url])
-
-  // if job is not null
-  if(job){
-    return(
-      <div>
-        <h2>Job title{job.title}</h2>
-        <p>Job start date{job.start_date}</p>
-      </div>
-    )
-  }
+  
   
   return (
+
     <View>
       <ScrollView style={styles.mainFeed}>
         {/* <View>{getAllJobs}</View> */}
@@ -160,6 +129,8 @@ const Feed = () => {
         </View>
       </View>
     </View>
+
+    
   );
 };
 

@@ -33,7 +33,7 @@ router.get("/users", async (req, res) => {
 router.get("/", async (req, res) => {
   try {
     console.log("trying to get all jobs :'(");
-    const jobs = await Job.findAll({ attributes: ["title", "start_date"] });
+    const jobs = await Job.findAll(); //{ attributes: ["title", "start_date"] }
     console.log(jobs);
     return res.status(200).json(jobs); // {jobs}
   } catch (err) {
@@ -94,9 +94,8 @@ router.get("/past/jobs", async (req, res) => {
   try {
     console.log("trying to get jobs that are past today's date");
     const pastjobs = await Job.findAll({
-      //attributes: ["title", "start_date"],
+      attributes: ["title", "start_date"],
       where: { $start_date$: { [Op.lt]: today } }, //the start date is after today's date!
-      // where: {title: "Trusts and Major Gifts Officer"}
     });
     return res.status(200).json(pastjobs);
   } catch (err) {
