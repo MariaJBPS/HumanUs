@@ -14,12 +14,13 @@ import EntypoIcon from "react-native-vector-icons/Entypo";
 import IonIcon from "react-native-vector-icons/Ionicons";
 import FoundationIcon from "react-native-vector-icons/Foundation";
 
-
-
 export default class Feed extends React.Component {
+  
+
   state = {
     loading: true,
-    jobs: []
+    jobs: [],
+    
   };
 
   // fetch all jobs title and start date
@@ -28,6 +29,9 @@ export default class Feed extends React.Component {
     const response = await fetch(url);
     const data = await response.json();
     this.setState({ jobs: data, loading: false });
+
+    const email = window.email;
+    console.log(email);
     console.log(data);
   }
 
@@ -59,11 +63,15 @@ export default class Feed extends React.Component {
                   </div>
                   <div>
                     Charity Email:{" "}
-                    {job.charity_email === null ? "<Untitled>" : job.charity_email}
+                    {job.charity_email === null
+                      ? "<Untitled>"
+                      : job.charity_email}
                   </div>
                   <div>
                     Charity Name:{" "}
-                    {job.charity_name === null ? "<Untitled>" : job.charity_name}
+                    {job.charity_name === null
+                      ? "<Untitled>"
+                      : job.charity_name}
                   </div>
                   <div>
                     Charity Bio:{" "}
@@ -79,10 +87,11 @@ export default class Feed extends React.Component {
                   </div>
                 </div>
                 {/* clicking apply adds that application to the database */}
-                  <Button title={<Link to="/animals">Apply</Link>} />
+                <Button title={<Link to="/animals">Apply</Link>} />
               </View>
             ))}
           </div>
+          <View></View>
         </ScrollView>
 
         {/* navbar */}
@@ -139,12 +148,14 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   Contain: {
-    backgroundColor: "lightgrey",
+    backgroundColor: "lightblue",
     width: "90%",
     //alignItems: "center",
     marginLeft: 20,
     marginTop: 15,
     borderRadius: 5,
+    marginBottom: 20,
+    paddingBottom: 70,
     Height: "50%",
   },
   Navigation: {
