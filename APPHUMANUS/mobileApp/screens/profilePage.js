@@ -52,6 +52,7 @@ const ProfilePage = ({ navigation }) => {
         </View>
         <View style={styles.textInput}>
           <Icon name="map-marker-radius" size={30} />
+          
           <text>London,England</text>
         </View>
         <View style={styles.textInput}>
