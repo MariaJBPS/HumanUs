@@ -46,16 +46,26 @@ export default class JobsA extends React.Component {
             <Text style={styles.HeadOne}>Active Jobs</Text>
           </View>
 
-          <ScrollView>
+          <ScrollView >
             <div>
               {this.state.activeJobs.map((active) => (
                 <View style={styles.Contain}>
                   <div>
                     <div>
-                      Job Title: {active.title === null ? "<Untitled>" : active.title}
+                      Job Title:{" "}
+                      {active.title === null ? "<Untitled>" : active.title}
                     </div>
                     <div>
-                      Start Date : {active.start_date === null ? "<Untitled>" : active.start_date.slice(0,10)}
+                      Description :{" "}
+                      {active.description === null
+                        ? "<Untitled>"
+                        : active.description}
+                    </div>
+                    <div>
+                      Start Date :{" "}
+                      {active.start_date === null
+                        ? "<Untitled>"
+                        : active.start_date.slice(0, 10)}
                     </div>
                   </div>
                   <View style={styles.Box}>
@@ -158,4 +168,3 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
 });
-

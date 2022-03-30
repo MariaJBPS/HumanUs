@@ -48,7 +48,14 @@ export default class Jobs extends React.Component {
                 <View style={styles.Contain}>
                   <div>
                     <div>
-                      Job Title: {past.title === null ? "<Untitled>" : past.title}
+                      Job Title:{" "}
+                      {past.title === null ? "<Untitled>" : past.title}
+                    </div>
+                    <div>
+                      Description :{" "}
+                      {past.description === null
+                        ? "<Untitled>"
+                        : past.description}
                     </div>
                     <div>
                       Start Date :

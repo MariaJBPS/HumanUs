@@ -36,7 +36,7 @@ const AuthScreen2 = () => {
   const onLoggedIn = (token) => {
     if (isLogin) {
       //if user is logged in
-      global.email = email; //save their email globally
+      window.email = email; //save their email globally
     }
 
     console.log("trying login" + `${API_URL}/private`);

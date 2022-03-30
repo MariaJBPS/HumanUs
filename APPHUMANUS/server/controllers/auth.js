@@ -4,7 +4,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 
-import { User} from "../models/user.js";
+import { User, Job_Application} from "../models/user.js";
 
 /* signup registers users in the database.
 First, it checks if the email provided has already been registered.

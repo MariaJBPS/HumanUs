@@ -22,120 +22,92 @@ import FoundationIcon from "react-native-vector-icons/Foundation";
 import Select from "react-select";
 //add a checkbox instaed of scroll
 import Multiselect from "multiselect-react-dropdown";
-import {Link} from 'react-router-dom';
-const ProfilePage = ({ navigation }) => {
-  /* const pressHandler = () => {
-    navigation.navigate("Sign Up"); // should match the screen names in App.js
-  }; */
+import { Link } from "react-router-dom";
+export default class ProfilePage extends React.Component {
+  state = {
+    loading: true,
+    user: [],
+  };
 
-  /* const Picture = () => (
-    <Avatar.Image size={24} source={require("./assets/demoPhoto.jpg")} />
-  );
-  export default Picture */
+  // fetch all jobs title and start date
+  async componentDidMount() {
+    const url = "http://localhost:5000/emailprofile";
+    const response = await fetch(url);
+    const data = await response.json();
+    this.setState({ user: data, loading: false });
+    console.log(data);
+  }
 
-  const [isSelected, setSelection] = useState(false);
+  render() {
+    return (
+      <ScrollView>
+        <View style={styles.mainView}>
+          {/* <View style={styles.topView}></View> */}
+          {/* <ScrollView style={styles.bottomView}> */}
 
-  return (
-    <ScrollView>
-      <View style={styles.mainView}>
-        <View style={styles.topView}></View>
-        {/* <ScrollView style={styles.bottomView}> */}
+          <View style={{ flexDirection: "row" }}>
+            <Avatar.Image
+              size={200}
+              source="https://cdn.pixabay.com/photo/2016/03/23/04/01/woman-1274056_1280.jpg"
+            />
+          </View>
+          <View style={{ flexDirection: "row" }}>
+            <Title style={styles.heading}>Your Profile</Title>
+          </View>
+          <View style={styles.textInput}>
+            {/* <Icon name="map-marker-radius" size={30} /> */}
+            First Name: {this.state.user.firstName}
+          </View>
+          <View style={styles.textInput}>
+            {/* <Icon name="phone" size={30} /> */}
+            Last Name: {this.state.user.lastName}
+          </View>
+          <View style={styles.textInput}>
+            {/* <Icon name="email" size={30} /> */}
+            Email: {this.state.user.email}
+          </View>
+        </View>
 
-        <View style={{ flexDirection: "row" }}>
-          {/* <Avatar.Image
-            size={200}
-            source={require("../assets/demoPhoto.jpg")}
-          /> */}
+        {/* navbar */}
+        <View style={styles.Navigation}>
+          <View style={styles.NavButton}>
+            <TouchableOpacity>
+              <Link to="/activejobs" style={styles.buttonTxt}>
+                <FoundationIcon name="clipboard" color="white" size={35} />
+              </Link>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.NavButton}>
+            <TouchableOpacity>
+              <Link to="/" style={styles.buttonTxt}>
+                <EntypoIcon name="home" color="white" size={35} />
+              </Link>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.NavButton}>
+            <TouchableOpacity>
+              <View style={{ flexDirection: "column" }}>
+                <Link to="/profile" style={styles.buttonTxt}>
+                  <IonIcon
+                    name="person-circle-outline"
+                    color="white"
+                    size={35}
+                  />
+                </Link>
+              </View>
+            </TouchableOpacity>
+          </View>
         </View>
-        <View style={{ flexDirection: "row" }}>
-          <Title style={styles.heading}>Your Profile</Title>
-        </View>
-        <View style={styles.textInput}>
-          <Icon name="map-marker-radius" size={30} />
-          <text>London,England</text>
-        </View>
-        <View style={styles.textInput}>
-          <Icon name="phone" size={30} />
-          <text>07799430788</text>
-        </View>
-        <View style={styles.textInput}>
-          <Icon name="email" size={30} />
-          <text>patari@kent.ac.uk</text>
-        </View>
-        <View style={styles.textInput}>
-          <Icon name="check" size={30} />
-          <text>Select the categories you are interested in below</text>
-        </View>
-        <View>
-          <CheckBox
-            style={styles.textInput}
-            value={isSelected}
-            onValueChange={setSelection}
-          />
-          <Text>Animals</Text>
-        </View>
-        <View>
-          <CheckBox
-            style={styles.textInput}
-            value={isSelected}
-            onValueChange={setSelection}
-          />
-          <Text>People</Text>
-        </View>
-        <View>
-          <CheckBox
-            style={styles.textInput}
-            value={isSelected}
-            onValueChange={setSelection}
-          />
-          <Text>Literring</Text>
-        </View>
-        <View>
-          <CheckBox
-            style={styles.textInput}
-            value={isSelected}
-            onValueChange={setSelection}
-          />
-          <Text>Enivroment</Text>
-        </View>
-  
-      </View>
-
-    
-    {/* navbar */}
-    <View style={styles.Navigation}>
-        <View style={styles.NavButton}>
-          <TouchableOpacity>
-            <Link to="/activejobs" style={styles.buttonTxt}>
-              <FoundationIcon name="clipboard" color="white" size={35} />
-            </Link>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.NavButton}>
-          <TouchableOpacity>
-            <Link to="/" style={styles.buttonTxt}>
-              <EntypoIcon name="home" color="white" size={35} />
-            </Link>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.NavButton}>
-          <TouchableOpacity>
-              <View style={{flexDirection:'column'}}>
-            <Link to="/profile" style={styles.buttonTxt}>
-              <IonIcon name="person-circle-outline" color="white" size={35} />
-            </Link>
-            </View>
-          </TouchableOpacity>
-        </View>
-      </View>
-  </ScrollView>
-    
-  );
-};
+      </ScrollView>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   mainView: {
     marginTop: 40,
+    backgroundColor: "pink",
+    padding: 70,
     flex: 1,
     flexDirection: "colum",
     justifyContent: "center",
@@ -169,15 +141,16 @@ const styles = StyleSheet.create({
     marginTop: 30,
   },
   textInput: {
-    width: "90%",
+    width: "100%",
     borderWidth: 2,
     borderColor: "black", // borderColor: "white"
-    height: 52,
+    height: 72,
     borderRadius: 10,
     paddingLeft: 5,
     marginTop: 20,
-    fontSize: 16,
+    fontSize: 25,
     alignItems: "left",
+    fontWeight: "bold",
   },
   signInButton: {
     width: "90%",
@@ -243,8 +216,8 @@ const styles = StyleSheet.create({
     width: "100%",
     flexDirection: "row",
     justifyContent: "center",
-    position: 'fixed',
-    top:"91.5%",
+    position: "fixed",
+    top: "91.5%",
   },
   NavButton: {
     color: "white",
@@ -254,5 +227,3 @@ const styles = StyleSheet.create({
     padding: 20,
   },
 });
-
-export default ProfilePage;
