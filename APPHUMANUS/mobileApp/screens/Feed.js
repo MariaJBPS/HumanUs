@@ -16,11 +16,9 @@ import FoundationIcon from "react-native-vector-icons/Foundation";
 
 export default class Feed extends React.Component {
   
-
   state = {
     loading: true,
     jobs: [],
-    
   };
 
   // fetch all jobs title and start date

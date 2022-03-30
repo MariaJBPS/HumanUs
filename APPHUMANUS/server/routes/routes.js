@@ -70,15 +70,15 @@ router.get("/job/:id", async (req, res) => {
 });
 
 // get a specific user, for profile page
-router.get("/users/:email", async (req, res) => {
-  const email = req.params.email;
+router.get("/emailprofile", async (req, res) => {
+  // const email = req.params.email;
   try {
     console.log("trying to get this user :'(");
     const user = await User.findOne({
       attributes: {
         exclude: ["password"], // gets user email, first and last name
       },
-      where: { email },
+      where: { $email$: 'sara@gmail.com' },
     });
     return res.status(200).json(user);
   } catch (err) {
